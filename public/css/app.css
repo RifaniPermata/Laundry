@@ -10944,3 +10944,37 @@ a.text-dark:focus {
   }
 }
 
+
+.login-box .card{
+  border-radius: 15px;
+}
+.text-black {
+  color: #000;
+}
+.login-box .login-card-body{
+  border-radius: 15px; 
+  padding-bottom: 55px;
+}
+.login-box .login-title span {
+  color: #000080;
+}
+.login-box .description {
+  color: #1a1aff; 
+  font-size: 12px;
+}
+.login-box .input-group, .login-card-body .input-group .form-control {
+  background-color: #e9ecef;
+  border-radius: 11px;
+}
+
+.login-box button {
+  width: 100%; 
+  background-color: #3333ff; 
+  color: #fff;
+  padding: 8px;
+  border-radius: 11px;
+}
+.login-box button:hover {
+  color: #fff;
+  opacity: .9;
+}
