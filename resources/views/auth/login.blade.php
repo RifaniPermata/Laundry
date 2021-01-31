@@ -26,7 +26,7 @@
             </div>
             <div class="row">
                 <div class="col mt-2">
-                    <button type="submit" class="btn btn-login">Selanjutnya</button>
+                    <button type="submit" class="btn btn-login">masuk</button>
                 </div>
             </div>
           </form>
