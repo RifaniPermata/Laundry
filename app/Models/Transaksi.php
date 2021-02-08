@@ -10,4 +10,19 @@ class Transaksi extends Model
     protected $fillable = [
     	'outlet_id', 'kode_invoice', 'member_id', 'tgl', 'batas_waktu', 'tgl_bayar', 'biaya_tambahan', 'diskon', 'pajak', 'status', 'dibayar', 'user_id'
     ];
+
+    public function outlet()
+    {
+        return $this->belongsTo('App\Models\Outlet');
+    }
+
+    public function member()
+    {
+        return $this->belongsTo('App\Models\Member');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }

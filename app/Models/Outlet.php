@@ -10,4 +10,19 @@ class Outlet extends Model
     protected $fillable = [
     	'nama','alamat','tlp'
     ];
+
+    public function users()
+    {
+        return $this->hasMany('App\Models\User');
+    }
+
+    public function pakets()
+    {
+        return $this->hasMany('App\Models\Paket');
+    }
+
+    public function transaksis()
+    {
+        return $this->hasMany('App\Models\Transaksi');
+    }
 }

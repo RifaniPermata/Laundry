@@ -16,17 +16,17 @@ class CreateTransaksisTable extends Migration
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
             $table->foreignId('outlet_id')->constrained()->onDelete('cascade');
-            $table->string('kode_invoice',100);
             $table->foreignId('member_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('kode_invoice',100);
             $table->dateTime('tgl');
             $table->dateTime('batas_waktu');
             $table->dateTime('tgl_bayar');
-            $table->integer('biaya_tambahan');
-            $table->double('diskon');
-            $table->integer('pajak');
-            $table->enum('status',['baru','proses','selesai','diambil']);
-            $table->enum('dibayar',['dibayar','belum_dibayar']);
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->integer('biaya_tambahan')->default(0);
+            $table->double('diskon')->defaul(0);
+            $table->integer('pajak')->default(0);
+            $table->enum('status',['baru','proses','selesai','diambil'])->default('baru');
+            $table->enum('dibayar',['dibayar','belum_dibayar'])->default('belum_dibayar');
             $table->timestamps();
         });
     }

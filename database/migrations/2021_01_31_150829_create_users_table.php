@@ -15,10 +15,10 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('outlet_id')->constrained()->onDelete('cascade');
             $table->string('nama',100);
             $table->string('username',30);
             $table->text('password');
-            $table->foreignId('outlet_id')->constrained()->onDelete('cascade');
             $table->enum('role',['admin','kasir','owner']);
             $table->rememberToken();
             $table->timestamps();

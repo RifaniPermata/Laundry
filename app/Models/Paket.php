@@ -10,4 +10,9 @@ class Paket extends Model
     protected $fillable = [
     	'outlet_id', 'jenis', 'nama_paket'
     ];
+
+    public function outlet()
+    {
+        return $this->belongsTo('App\Models\Outlet');
+    }
 }

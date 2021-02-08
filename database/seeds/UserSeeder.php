@@ -12,13 +12,16 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        $users = ['owner','admin','kasir'];
+        foreach ($users as $user) {
+            User::create([
+                'nama' => ucfirst($user) . ' Laundry',
+                'username' => $user,
+                'password' => Hash::make($user),
+                'outlet_id' => 1,
+                'role' => $user,
+            ]);
+        }
 
-		User::create([
-			'nama' => 'Admin Laundry',
-			'username' => 'admin',
-			'password' => Hash::make('admin'),
-			'outlet_id' => 1,
-			'role' => 'admin',
-		]);
     }
 }

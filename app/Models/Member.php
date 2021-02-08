@@ -11,4 +11,8 @@ class Member extends Model
     	'nama', 'alamat','jenis_kelamin', 'tlp'
     ];
 
+    public function transaksis()
+    {
+        return $this->hasMany('App\Models\Transaksi');
+    }
 }
