@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('layouts.admin.master');
+    return view('welcome');
+});
+
+Route::prefix('admin')->group(function(){
+	Route::resource('outlet', 'OutletController');
 });
 
 Auth::routes();

@@ -1,5 +1,5 @@
 @include('layouts.admin.partials.header')
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini layout-fixed">
 <!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->
@@ -56,7 +56,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>@yield('title-page', 'Dashboard')</h1>
+            <h1>@yield('page-title', 'Dashboard')</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -95,5 +95,6 @@
 <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('assets/dist/js/adminlte.min.js') }}"></script>
+@yield('footer-script')
 </body>
 </html>

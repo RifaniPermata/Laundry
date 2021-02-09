@@ -23,4 +23,5 @@
       padding: 0;
     }
   </style>
+  @yield('header-script')
 </head>

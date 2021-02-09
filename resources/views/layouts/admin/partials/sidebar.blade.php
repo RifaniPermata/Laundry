@@ -26,7 +26,7 @@
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
 
           <li class="nav-item">
             <a href="#" class="nav-link">
@@ -57,8 +57,24 @@
               <i class="nav-icon fas fa-store"></i>
               <p>
                 Outlet
+                <i class="fas fa-angle-left right"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              
+              <li class="nav-item">
+                <a href="{{ route('outlet.index') }}" class="nav-link">
+                  <i class="fas fa-clipboard-list nav-icon"></i>
+                  <p>Daftar Outlet</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('outlet.create') }}" class="nav-link">
+                  <i class="far fa-plus-square nav-icon"></i>
+                  <p>Tambah Outlet</p>
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
@@ -84,6 +100,7 @@
               </p>
             </a>
           </li>
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

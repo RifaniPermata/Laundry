@@ -13,9 +13,9 @@ class OutletSeeder extends Seeder
     public function run()
     {
         Outlet::create([
-        	'nama' => 'ARL Laundry',
-        	'alamat' => 'Jl. Raya Pagaden km 12',
-        	'tlp' => '0821345678112',
+            'nama' => 'ARL Laundry',
+            'alamat' => 'Jl. Raya Pagaden km 12',
+            'tlp' => '0821345678112',
         ]);
     }
 }
