@@ -13,14 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'main.dashboard')->middleware('auth');
 
-Route::prefix('admin')->group(function(){
-	Route::resource('outlet', 'OutletController');
-});
+Route::resource('outlet', 'OutletController');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'HomeController@index')->name('home');

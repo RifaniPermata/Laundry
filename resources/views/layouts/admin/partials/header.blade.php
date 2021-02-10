@@ -22,6 +22,32 @@
     .logout {
       padding: 0;
     }
+    .main-sidebar {
+      background-color: #fff;
+    }
+    .main-sidebar .info .info-name {
+      color: #212529;
+    }
+    .main-sidebar .info .info-name:hover {
+      color: #212529;
+    }
+    .main-sidebar .form-inline input, .main-sidebar .form-inline button {
+      color: #212529;
+      background-color: #fff;
+    }
+    .main-sidebar .nav-item i, .main-sidebar .nav-item p{
+      color: #212529;
+    }
+
+    .navbar{
+      background-color: #007bff;
+    }
+    .navbar .nav-item .nav-link{
+      color: #fff;
+    }
+    .main-footer {
+      color: #212529;
+    }
   </style>
   @yield('header-script')
 </head>
