@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'main.dashboard')->middleware('auth');
 
 Route::resource('outlet', 'OutletController');
+Route::resource('member', 'MemberController');
 
 Auth::routes();
 

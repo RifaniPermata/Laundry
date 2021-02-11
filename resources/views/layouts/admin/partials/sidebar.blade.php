@@ -27,7 +27,6 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
-          @if( Auth::user()->role == 'admin')
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -36,6 +35,8 @@
               </p>
             </a>
           </li>
+          @if( Auth::user()->role == 'admin')
+          
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-money-bill-wave-alt"></i>
@@ -70,7 +71,7 @@
               </li>
               <li class="nav-item">
                 <a href="{{ route('outlet.create') }}" class="nav-link">
-                  <i class="far fa-plus-square nav-icon"></i>
+                  <i class="fas fa-plus-square nav-icon"></i>
                   <p>Tambah Outlet</p>
                 </a>
               </li>
@@ -78,37 +79,29 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
+              <i class="nav-icon fas fa-store"></i>
               <p>
-                Pengguna
+                Member
+                <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-file-alt"></i>
-              <p>
-                Laporan
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-cog"></i>
-              <p>
-                Pengaturan
-              </p>
-            </a>
+            <ul class="nav nav-treeview">
+              
+              <li class="nav-item">
+                <a href="{{ route('member.index') }}" class="nav-link">
+                  <i class="fas fa-clipboard-list nav-icon"></i>
+                  <p>Daftar Member</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('member.create') }}" class="nav-link">
+                  <i class="fas fa-plus-square nav-icon"></i>
+                  <p>Tambah Member</p>
+                </a>
+              </li>
+            </ul>
           </li>
           @elseif ( Auth::user()->role == 'kasir')
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-              </p>
-            </a>
-          </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-money-bill-wave-alt"></i>
@@ -121,34 +114,13 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
-                Pengguna
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-file-alt"></i>
-              <p>
-                Laporan
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-cog"></i>
-              <p>
-                Pengaturan
+                Member
               </p>
             </a>
           </li>
           @else
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-              </p>
-            </a>
+          
+          @endif
           </li>
             <li class="nav-item">
             <a href="#" class="nav-link">
@@ -166,7 +138,6 @@
               </p>
             </a>
           </li>
-          @endif
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

@@ -3,14 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Outlet;
+use App\Models\Member;
 
-class OutletController extends Controller
+class MemberController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,8 +14,8 @@ class OutletController extends Controller
      */
     public function index()
     {
-        $outlets = Outlet::all();
-        return view('main.outlet.index', compact('outlets'));
+        $members = Member::paginate(10);
+        return view('main.member.index',compact('members'));
     }
 
     /**
@@ -29,7 +25,7 @@ class OutletController extends Controller
      */
     public function create()
     {
-        return view('main.outlet.add-outlet');
+        return view('main.member.add-member');
     }
 
     /**
@@ -40,15 +36,15 @@ class OutletController extends Controller
      */
     public function store(Request $request)
     {
-        $this->outletValidation($request);
-
-        Outlet::create([
+        $this->memberValidation($request);
+        Member::create([
             'nama' => $request->nama,
             'alamat' => $request->alamat,
+            'jenis_kelamin' => $request->jenis_kelamin,
             'tlp' => $request->tlp,
         ]);
-
-        return redirect()->route('outlet.index')->with('success', 'Berhasil menambahkan data outlet');
+        
+        return redirect()->route('member.index')->with('success', 'Member baru berhasil ditambahkan');
     }
 
     /**
@@ -59,7 +55,7 @@ class OutletController extends Controller
      */
     public function show($id)
     {
-
+        //
     }
 
     /**
@@ -70,10 +66,9 @@ class OutletController extends Controller
      */
     public function edit($id)
     {
-        $outlet = Outlet::where('id', $id)->first();
-        return view('main.outlet.edit', compact('outlet'));
+        $member = Member::where('id', $id)->first();
+        return view('main.member.edit', compact('member'));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -83,15 +78,16 @@ class OutletController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->outletValidation($request);
-        Outlet::where('id', $id)->update([
+        $this->memberValidation($request);
+        Member::where('id', $id)->update([
             'nama' => $request->nama,
+            'alamat' => $request->alamat,
             'alamat' => $request->alamat,
             'tlp' => $request->tlp,
         ]);
-        return redirect()->route('outlet.index')->with('update', 'Data berhasil diperbarui');
+        return redirect()->route('member.index')->with('update', 'Data berhasil diperbarui');
     }
-    
+
     /**
      * Remove the specified resource from storage.
      *
@@ -100,15 +96,16 @@ class OutletController extends Controller
      */
     public function destroy($id)
     {
-        Outlet::destroy($id);
-        return redirect()->route('outlet.index');
+        Member::destroy($id);
+        return redirect()->route('member.index');
     }
 
-    private function outletValidation($request){
+    private function memberValidation($request){
         $validation = $request->validate([
             'nama' => ['required', 'max:100'],
             'alamat' => ['required','string'],
+            'jenis_kelamin' => ['required','size:1'],
             'tlp' => ['required','digits_between:11,13'],
-        ]);  
+        ]);
     }
 }

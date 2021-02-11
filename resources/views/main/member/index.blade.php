@@ -1,17 +1,19 @@
 @extends('layouts.admin.master')
-@section('title','Daftar Outlet')
-@section('page-title','Outlet')
-@section('breadcrumb','outlet')
+@section('title','Daftar Member')
+@section('page-title','Member')
+@section('breadcrumb','member')
 @section('header-script')
   <link rel="stylesheet" href="{{ asset('assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
 @endsection
 @section('content')
-<section class="content">
 
+@php
+  $no = $members->firstItem()
+@endphp
+<section class="content">
       <div class="card">
         <div class="card-header">
           <h3 class="card-title">Daftar Outlet</h3>
-
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
               <i class="fas fa-minus"></i>
@@ -25,30 +27,35 @@
           <table class="table table-striped table-bordered" >
               <thead>
                   <tr>
-                    <th>No</th>
+                    <th style="width: 1%">No</th>
                     <th>Nama</th>
                     <th>Alamat</th>
+                    <th style="width: 1%">Jenis Kelamin</th>
                     <th>Nomor Telpon</th>
                     <th>Aksi</th>
                   </tr>
               </thead>
               <tbody>
-              	@forelse($outlets as $outlet)
+              	@forelse($members as $member)
                   <tr>
-                  	<td style="width: 1%">{{ $loop->iteration }}</td>
-                  	<td>{{ $outlet->nama }}</td>
-                  	<td>{{ $outlet->alamat }}</td>
-                  	<td>{{ $outlet->tlp }}</td>
+                  	<td>{{ $no }}</td>
+                  	<td>{{ $member->nama }}</td>
+                    <td>{{ $member->alamat }}</td>
+                  	<td>{{ $member->jenis_kelamin }}</td>
+                  	<td>{{ $member->tlp }}</td>
                     <td>
-                      <a href="{{ route('outlet.edit', ['outlet' => $outlet->id ]) }}" class="btn btn-warning">Edit</a>
+                      <a href="{{ route('member.edit', ['member' => $member->id ]) }}" class="btn btn-warning">Edit</a>
                       
-                      <form id="destroy-outlet" method="post" class="d-inline" action="{{ route('outlet.destroy',['outlet' => $outlet->id  ]) }}">
+                      <form id="destroy-outlet" method="post" class="d-inline" action="{{ route('member.destroy',['member' => $member->id  ]) }}">
                         @csrf
                         @method('delete')
                         <button type="button" class="btn btn-danger btn-outlet">Hapus</button>
                       </form>
                     </td>
                   </tr>
+                  @php
+                    $no++;
+                  @endphp
                 @empty
                   <tr>
                   	<td colspan="4" class="text-center">tidak ada data</td>
@@ -57,12 +64,16 @@
                 
               </tbody>
           </table>
+
         </div>
+
         <!-- /.card-body -->
       </div>
       <!-- /.card -->
+      {{ $members->links() }}
 
     </section>
+
 @endsection
 
 @section('footer-script')
@@ -70,7 +81,7 @@
 <script type="text/javascript">
     $(".btn-outlet").click(function(){
       Swal.fire({
-        title: 'Anda yakin ingin menghapus data outlet',
+        title: 'Anda yakin ingin menghapus data member',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
