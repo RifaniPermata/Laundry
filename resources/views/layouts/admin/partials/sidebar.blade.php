@@ -38,12 +38,28 @@
           @if( Auth::user()->role == 'admin')
           
           <li class="nav-item">
-            <a href="{{ route('transaksi.index') }}" class="nav-link">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-money-bill-wave-alt"></i>
               <p>
                 Transaksi
+                <i class="fas fa-angle-left right"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              
+              <li class="nav-item">
+                <a href="{{ route('transaksi.index') }}" class="nav-link">
+                  <i class="nav-icon fas fa-clipboard-list"></i>
+                  <p>Daftar Transaksi</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('transaksi.create') }}" class="nav-link">
+                  <i class="fas fa-plus-square nav-icon"></i>
+                  <p>Tambah Data Transaksi</p>
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
@@ -104,11 +120,27 @@
           @elseif ( Auth::user()->role == 'kasir')
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-money-bill-wave-alt"></i>
+              <i class="nav-icon fas fa-store"></i>
               <p>
-                Transaksi
+                Member
+                <i class="fas fa-angle-left right"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              
+              <li class="nav-item">
+                <a href="{{ route('transaksi.index') }}" class="nav-link">
+                  <i class="nav-icon fas fa-clipboard-list"></i>
+                  <p>Daftar Transaksi</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('transaksi.create') }}" class="nav-link">
+                  <i class="fas fa-plus-square nav-icon"></i>
+                  <p>Tambah Data Transaksi</p>
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">

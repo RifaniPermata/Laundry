@@ -1,5 +1,5 @@
 @include('layouts.admin.partials.header')
-<body class="hold-transition sidebar-mini layout-fixed sidebar-collapse">
+<body class="hold-transition sidebar-mini layout-fixed">
 <!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->
