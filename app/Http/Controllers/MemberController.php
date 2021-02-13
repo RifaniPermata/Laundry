@@ -100,7 +100,8 @@ class MemberController extends Controller
         return redirect()->route('member.index');
     }
 
-    private function memberValidation($request){
+    private function memberValidation($request)
+    {
         $validation = $request->validate([
             'nama' => ['required', 'max:100'],
             'alamat' => ['required','string'],

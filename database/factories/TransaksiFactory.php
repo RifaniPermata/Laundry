@@ -11,10 +11,9 @@ $factory->define(Transaksi::class, function (Faker $faker) {
 	$status = ['baru','proses','selesai','diambil'];
     return [
     	'outlet_id' => 1,
-    	'member_id' => 1,
-    	'user_id' => 1,
+    	'member_id' => rand(1,15),
+    	'user_id' => 3,
         'kode_invoice' => 'KODE/INCOVIE',
-		'tgl' => now(),
 		'batas_waktu' => now(),
 		'tgl_bayar' => now(),
 		'biaya_tambahan' => 0,

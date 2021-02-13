@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
                 'password' => Hash::make($user),
                 'outlet_id' => 1,
                 'role' => $user,
+                'kode' => substr($user, 0,3),
             ]);
         }
 

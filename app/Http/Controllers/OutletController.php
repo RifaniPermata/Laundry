@@ -104,7 +104,8 @@ class OutletController extends Controller
         return redirect()->route('outlet.index');
     }
 
-    private function outletValidation($request){
+    private function outletValidation($request)
+    {
         $validation = $request->validate([
             'nama' => ['required', 'max:100'],
             'alamat' => ['required','string'],

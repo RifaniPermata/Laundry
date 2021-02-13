@@ -19,13 +19,12 @@ class CreateTransaksisTable extends Migration
             $table->foreignId('member_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('kode_invoice',100);
-            $table->dateTime('tgl');
             $table->dateTime('batas_waktu');
             $table->dateTime('tgl_bayar');
             $table->integer('biaya_tambahan')->default(0);
             $table->double('diskon')->defaul(0);
             $table->integer('pajak')->default(0);
-            $table->enum('status',['baru','proses','selesai','diambil'])->default('baru');
+            $table->enum('status',['baru','proses','diambil','selesai'])->default('baru');
             $table->enum('dibayar',['dibayar','belum_dibayar'])->default('belum_dibayar');
             $table->timestamps();
         });

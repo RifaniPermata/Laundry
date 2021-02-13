@@ -11,7 +11,7 @@
   $no = $members->firstItem()
 @endphp
 <section class="content">
-      <div class="card">
+      <div class="card overflow-auto">
         <div class="card-header">
           <h3 class="card-title">Daftar Outlet</h3>
           <div class="card-tools">

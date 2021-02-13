@@ -15,8 +15,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'main.dashboard')->middleware('auth');
 
-Route::resource('outlet', 'OutletController');
-Route::resource('member', 'MemberController');
+Route::resource('outlet', 'OutletController')->except([
+	'show'
+]);
+Route::resource('member', 'MemberController')->except([
+	'show'
+]);
+Route::resource('transaksi', 'TransaksiController')->except([
+	'show'
+]);
 
 Auth::routes();
 
