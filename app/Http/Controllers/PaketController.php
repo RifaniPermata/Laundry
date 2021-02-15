@@ -3,14 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Paket;
 use App\Models\Outlet;
 
-class OutletController extends Controller
+class PaketController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,8 +15,8 @@ class OutletController extends Controller
      */
     public function index()
     {
-        $outlets = Outlet::paginate(10);
-        return view('main.outlet.index', compact('outlets'));
+        $pakets = Paket::paginate(10);
+        return view('main.paket.index',compact('pakets'));
     }
 
     /**
@@ -29,7 +26,8 @@ class OutletController extends Controller
      */
     public function create()
     {
-        return view('main.outlet.add-outlet');
+        $outlets = Outlet::all();
+        return view('main.paket.add-paket', compact('outlets'));
     }
 
     /**
@@ -40,15 +38,15 @@ class OutletController extends Controller
      */
     public function store(Request $request)
     {
-        $this->outletValidation($request);
-
-        Outlet::create([
-            'nama' => $request->nama,
-            'alamat' => $request->alamat,
-            'tlp' => $request->tlp,
+        $this->paketValidation($request);
+        Paket::create([
+            'outlet_id' => (int) $request->outlet_id,
+            'jenis' => $request->jenis,
+            'nama_paket' => $request->nama_paket,
+            'keterangan' => $request->keterangan,
         ]);
-
-        return redirect()->route('outlet.index')->with('success', 'Berhasil menambahkan data outlet');
+        
+        return redirect()->route('paket.index')->with('success', 'Paket baru berhasil ditambahkan');
     }
 
     /**
@@ -59,7 +57,7 @@ class OutletController extends Controller
      */
     public function show($id)
     {
-
+        //
     }
 
     /**
@@ -70,8 +68,7 @@ class OutletController extends Controller
      */
     public function edit($id)
     {
-        $outlet = Outlet::where('id', $id)->first();
-        return view('main.outlet.edit', compact('outlet'));
+        //
     }
 
     /**
@@ -83,15 +80,9 @@ class OutletController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->outletValidation($request);
-        Outlet::where('id', $id)->update([
-            'nama' => $request->nama,
-            'alamat' => $request->alamat,
-            'tlp' => $request->tlp,
-        ]);
-        return redirect()->route('outlet.index')->with('update', 'Data berhasil diperbarui');
+        //
     }
-    
+
     /**
      * Remove the specified resource from storage.
      *
@@ -100,16 +91,17 @@ class OutletController extends Controller
      */
     public function destroy($id)
     {
-        Outlet::destroy($id);
-        return redirect()->route('outlet.index');
+        Paket::destroy($id);
+        return redirect()->route('paket.index');
     }
 
-    private function outletValidation($request)
+    private function paketValidation($request)
     {
         $validation = $request->validate([
-            'nama' => ['required', 'max:100'],
-            'alamat' => ['required','string'],
-            'tlp' => ['required','digits_between:11,13'],
-        ]);  
+            'outlet_id' => ['required','integer'],
+            'jenis' => ['required','string'],
+            'nama_paket' => ['required','string'],
+            'keterangan' => ['nullable','string'],
+        ]);
     }
 }

@@ -24,6 +24,10 @@ Route::resource('member', 'MemberController')->except([
 Route::resource('transaksi', 'TransaksiController')->except([
 	'show'
 ]);
+Route::resource('paket', 'PaketController')->except([
+	'show'
+]);
+
 
 Auth::routes();
 
