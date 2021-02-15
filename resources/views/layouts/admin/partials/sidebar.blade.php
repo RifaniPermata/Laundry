@@ -62,12 +62,28 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="{{ route('paket.index') }}" class="nav-link">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-boxes"></i>
               <p>
                 Paket Cucian
+                <i class="fas fa-angle-left right"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              
+              <li class="nav-item">
+                <a href="{{ route('outlet.index') }}" class="nav-link">
+                  <i class="fas fa-clipboard-list nav-icon"></i>
+                  <p>Daftar Paket</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('outlet.create') }}" class="nav-link">
+                  <i class="fas fa-plus-square nav-icon"></i>
+                  <p>Tambah Paket</p>
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">

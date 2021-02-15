@@ -8,7 +8,7 @@ class Paket extends Model
 {
     protected $table = 'pakets';
     protected $fillable = [
-    	'outlet_id', 'jenis', 'nama_paket'
+    	'outlet_id', 'jenis', 'nama_paket', 'keterangan'
     ];
 
     public function outlet()

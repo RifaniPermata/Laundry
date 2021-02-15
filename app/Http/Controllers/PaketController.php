@@ -68,7 +68,9 @@ class PaketController extends Controller
      */
     public function edit($id)
     {
-        //
+        $paket = Paket::find($id);
+        $outlets = Outlet::all();
+        return view('main.paket.edit', compact('paket','outlets'));
     }
 
     /**
@@ -80,7 +82,15 @@ class PaketController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->paketValidation($request);
+        Paket::where('id',$id)->update([
+            'outlet_id' => (int) $request->outlet_id,
+            'jenis' => $request->jenis,
+            'nama_paket' => $request->nama_paket,
+            'keterangan' => $request->keterangan,
+        ]);
+
+        return redirect()->route('paket.index')->with('update', 'Data berhasil diperbarui');
     }
 
     /**
