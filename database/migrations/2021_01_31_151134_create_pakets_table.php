@@ -19,6 +19,7 @@ class CreatePaketsTable extends Migration
             $table->enum('jenis',['kiloan','selimut','bed_cover','kaos','lain']);
             $table->string('nama_paket',100);
             $table->string('keterangan')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

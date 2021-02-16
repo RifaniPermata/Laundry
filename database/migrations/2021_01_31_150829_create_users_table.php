@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->enum('role',['admin','kasir','owner']);
             $table->string('image')->nullable();
             $table->string('kode',3);
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
 

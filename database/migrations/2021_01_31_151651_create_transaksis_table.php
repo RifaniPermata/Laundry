@@ -26,6 +26,7 @@ class CreateTransaksisTable extends Migration
             $table->integer('pajak')->default(0);
             $table->enum('status',['baru','proses','diambil','selesai'])->default('baru');
             $table->enum('dibayar',['dibayar','belum_dibayar'])->default('belum_dibayar');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
