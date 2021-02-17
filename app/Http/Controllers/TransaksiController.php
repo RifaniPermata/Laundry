@@ -9,7 +9,14 @@ use App\Models\Member;
 
 class TransaksiController extends Controller
 {
+
     private $kodeInvoice;
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('admin:admin,kasir');
+    }
     /**
      * Display a listing of the resource.
      *

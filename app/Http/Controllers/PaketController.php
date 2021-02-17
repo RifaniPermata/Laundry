@@ -8,6 +8,11 @@ use App\Models\Outlet;
 
 class PaketController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('admin:admin');
+    } 
     /**
      * Display a listing of the resource.
      *

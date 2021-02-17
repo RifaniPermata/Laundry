@@ -7,6 +7,11 @@ use App\Models\Member;
 
 class MemberController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('admin:admin,kasir');
+    }
     /**
      * Display a listing of the resource.
      *
