@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Transaksi');
     }
+
+    public function logLogins()
+    {
+        return $this->hasMany('App\Models\LogLogin');
+    }
 }
