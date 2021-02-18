@@ -11,21 +11,18 @@
   $no = $transaksis->firstItem()
 @endphp
 <section class="content">
-      <div class="clearfix mb-2">
-        <div class="float-right">
-          <a href="{{ route('transaksi.trash') }}" class="btn btn-info"><i class="fas fa-trash"></i>&nbsp&nbspSampah</a>
-        </div>
+      <div class="mb-3">
+        <a href="{{ route('transaksi.index') }}" class="btn btn-info"><i class="fas fa-arrow-left"></i>&nbspback</a>
       </div>
       <div class="card overflow-auto">
         <div class="card-header">
-          <h3 class="card-title">Daftar Transaksi</h3>
+          <h3 class="card-title">Daftar Sampah Transaksi</h3>
           <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-              <i class="fas fa-minus"></i>
-            </button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-              <i class="fas fa-times"></i>
-            </button>
+            <form action="{{ route('transaksi.forceDelete.all') }}" method="post">
+              @csrf
+              @method('delete')
+              <button type="button" class="btn btn-danger force-delete-all">Hapus Semua</button>
+            </form>
           </div>
         </div>
         <div class="card-body p-0">
@@ -47,9 +44,9 @@
                   </tr>
               </thead>
               <tbody>
-              	@forelse($transaksis as $transaksi)
+                @forelse($transaksis as $transaksi)
                   <tr>
-                  	<td>{{ $no }}</td>
+                    <td>{{ $no }}</td>
                     <td>{{ $transaksi->outlet->nama }}</td>
                     <td>{{ $transaksi->kode_invoice }}</td>
                     <td>{{ $transaksi->member->nama }}</td>
@@ -59,15 +56,14 @@
                     <td>{{ $transaksi->diskon }}</td>
                     <td>{{ $transaksi->pajak }}</td>
                     <td>{{ $transaksi->dibayar }}</td>
-                  	<td>{{ $transaksi->status }}</td>
+                    <td>{{ $transaksi->status }}</td>
                     <td>
-                      <a href="{{ route('transaksi.edit', ['transaksi' => $transaksi->id ]) }}" class="btn btn-warning">Edit</a>
-                      
-                      <form method="post" class="d-inline" action="{{ route('transaksi.destroy',['transaksi' => $transaksi->id  ]) }}">
+                      <form method="post" class="d-inline" action="{{ route('transaksi.forceDelete',['transaksi' => $transaksi->id  ]) }}">
                         @csrf
                         @method('delete')
                         <button type="button" class="btn btn-danger btn-transaksi">Hapus</button>
                       </form>
+                      <a href="{{ route('transaksi.restore', ['transaksi' => $transaksi->id ]) }}" class="btn btn-primary">Restore</a>
                     </td>
                   </tr>
                   @php
@@ -75,7 +71,7 @@
                   @endphp
                 @empty
                   <tr>
-                  	<td colspan="12" class="text-center">tidak ada data</td>
+                    <td colspan="12" class="text-center">tidak ada data</td>
                   </tr>
                 @endforelse
                 
@@ -113,6 +109,21 @@
             text: 'Data berhasil dihapus',
             icon :'success'
           })
+          $(this).parent().submit()
+        }
+      })
+    })
+    $(".force-delete-all").click(function(){
+      Swal.fire({
+        title: 'Anda yakin ingin menghapus seluruh sampah transaksi',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Tidak',
+        confirmButtonText: 'Ya, Hapus!'
+      }).then((result) => {
+        if (result.isConfirmed) {
           $(this).parent().submit()
         }
       })

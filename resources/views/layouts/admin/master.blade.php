@@ -1,5 +1,5 @@
 @include('layouts.admin.partials.header')
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed @if(strpos(url()->current(), '/transaksi')) {{ 'sidebar-collapse' }}@endif">
 <!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->

@@ -151,4 +151,35 @@ class TransaksiController extends Controller
         $this->kodeInvoice .= "/";
         $this->kodeInvoice .= Transaksi::count() + 1;
     }
+
+        public function trash()
+    {
+        $transaksis = Transaksi::onlyTrashed()->paginate(10);
+        return view('main.transaksi.trash', compact('transaksis'));
+    }
+
+    public function forceDelete($id)
+    {
+        $transaksi = Transaksi::withTrashed()->where('id', $id);
+
+        $transaksi->forceDelete();
+        return redirect()->route('transaksi.trash');
+    }
+    public function forceDeleteAll()
+    {
+        $transaksis = Transaksi::onlyTrashed()->get();
+        if (!$transaksis->first->id) {
+            return redirect()->route('transaksi.trash')->with('error', 'Tidak ada data dalam sampah');
+        }
+        foreach ($transaksis as $transaksi) {
+            $transaksi->where('id', $transaksi->id)->forceDelete();
+        }
+        return redirect()->route('transaksi.trash');
+    }
+
+    public function restore($id)
+    {
+        Transaksi::withTrashed()->where('id', $id)->restore();
+        return redirect()->route('transaksi.trash')->with('restore', 'Data berhasil dipulihkan');
+    }
 }

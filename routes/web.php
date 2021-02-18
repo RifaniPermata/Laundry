@@ -28,6 +28,10 @@ Route::delete('member/permanent/delete/{member}','MemberController@forceDelete')
 Route::delete('member/permanent/delete','MemberController@forceDeleteAll')->name('member.forceDelete.all');
 
 Route::resource('transaksi', 'TransaksiController')->except(['show']);
+Route::get('transaksi/sampah','TransaksiController@trash')->name('transaksi.trash');
+Route::get('transaksi/restore/{transaksi}','TransaksiController@restore')->name('transaksi.restore');
+Route::delete('transaksi/permanent/delete/{transaksi}','TransaksiController@forceDelete')->name('transaksi.forceDelete');
+Route::delete('transaksi/permanent/delete','TransaksiController@forceDeleteAll')->name('transaksi.forceDelete.all');
 
 Route::resource('paket', 'PaketController')->except(['show']);
 Route::get('paket/sampah','PaketController@trash')->name('paket.trash');
