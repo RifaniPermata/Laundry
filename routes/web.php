@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'main.dashboard')->middleware('auth');
 
 Route::resource('outlet', 'OutletController')->except(['show']);
+Route::get('outlet/sampah','OutletController@trash')->name('outlet.trash');
+Route::get('outlet/restore/{outlet}','OutletController@restore')->name('outlet.restore');
+Route::delete('outlet/permanent/delete/{outlet}','OutletController@forceDelete')->name('outlet.forceDelete');
+Route::delete('outlet/permanent/delete','OutletController@forceDeleteAll')->name('outlet.forceDelete.all');
 
 Route::resource('member', 'MemberController')->except(['show']);
 Route::get('member/sampah','MemberController@trash')->name('member.trash');

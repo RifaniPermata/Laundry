@@ -10,7 +10,11 @@
 @endphp
 @section('content')
 <section class="content">
-
+      <div class="clearfix mb-2">
+        <div class="float-right">
+          <a href="{{ route('outlet.trash') }}" class="btn btn-info"><i class="fas fa-trash"></i>&nbsp&nbspSampah</a>
+        </div>
+      </div>
       <div class="card overflow-auto">
         <div class="card-header">
           <h3 class="card-title">Daftar Outlet</h3>

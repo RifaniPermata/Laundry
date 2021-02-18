@@ -124,12 +124,16 @@ class MemberController extends Controller
     public function forceDelete($id)
     {
         $member = Member::withTrashed()->where('id', $id);
+
         $member->forceDelete();
         return redirect()->route('member.trash');
     }
     public function forceDeleteAll()
     {
         $members = Member::onlyTrashed()->get();
+        if (!$members->first->id) {
+            return redirect()->route('member.trash')->with('error', 'Tidak ada data dalam sampah');
+        }
         foreach ($members as $member) {
             $member->where('id', $member->id)->forceDelete();
         }

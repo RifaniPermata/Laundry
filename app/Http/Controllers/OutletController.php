@@ -113,4 +113,34 @@ class OutletController extends Controller
             'tlp' => ['required','digits_between:11,13'],
         ]);  
     }
+
+    public function trash()
+    {
+        $outlets = Outlet::onlyTrashed()->paginate(10);
+        return view('main.outlet.trash', compact('outlets'));
+    }
+
+    public function forceDelete($id)
+    {
+        $outlet = Outlet::withTrashed()->where('id', $id);
+        $outlet->forceDelete();
+        return redirect()->route('outlet.trash');
+    }
+    public function forceDeleteAll()
+    {
+        $outlets = Outlet::onlyTrashed()->get();
+        if (!$outlets->first->id) {
+            return redirect()->route('outlet.trash')->with('error', 'Tidak ada data dalam sampah');
+        }
+        foreach ($outlets as $outlet) {
+            $outlet->where('id', $outlet->id)->forceDelete();
+        }
+        return redirect()->route('outlet.trash');
+    }
+
+    public function restore($id)
+    {
+        Outlet::withTrashed()->where('id', $id)->restore();
+        return redirect()->route('outlet.trash')->with('restore', 'Data berhasil dipulihkan');
+    }
 }
