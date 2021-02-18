@@ -1,5 +1,5 @@
 @extends('layouts.admin.master')
-@section('title','Daftar Paket')
+@section('title','Daftar Sampah Paket')
 @section('page-title','Paket')
 @section('breadcrumb','paket')
 @section('header-script')
@@ -11,21 +11,18 @@
   $no = $pakets->firstItem()
 @endphp
 <section class="content">
-      <div class="clearfix mb-2">
-        <div class="float-right">
-          <a href="{{ route('paket.trash') }}" class="btn btn-info"><i class="fas fa-trash"></i>&nbsp&nbspSampah</a>
-        </div>
+      <div class="mb-3">
+        <a href="{{ route('paket.index') }}" class="btn btn-info"><i class="fas fa-arrow-left"></i>&nbspback</a>
       </div>
       <div class="card overflow-auto">
         <div class="card-header">
-          <h3 class="card-title">Daftar Paket</h3>
+          <h3 class="card-title">Daftar sampah paket</h3>
           <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-              <i class="fas fa-minus"></i>
-            </button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-              <i class="fas fa-times"></i>
-            </button>
+            <form action="{{ route('paket.forceDelete.all') }}" method="post">
+              @csrf
+              @method('delete')
+              <button type="button" class="btn btn-danger force-delete-all">Hapus Semua</button>
+            </form>
           </div>
         </div>
         <div class="card-body p-0">
@@ -49,13 +46,13 @@
                   	<td>{{ $paket->nama_paket }}</td>
                   	<td>{{ $paket->keterangan }}</td>
                     <td>
-                      <a href="{{ route('paket.edit', ['paket' => $paket->id ]) }}" class="btn btn-warning">Edit</a>
                       
-                      <form id="destroy-outlet" method="post" class="d-inline" action="{{ route('paket.destroy',['paket' => $paket->id  ]) }}">
+                      <form id="destroy-outlet" method="post" class="d-inline" action="{{ route('paket.forceDelete',['paket' => $paket->id  ]) }}">
                         @csrf
                         @method('delete')
                         <button type="button" class="btn btn-danger btn-outlet">Hapus</button>
                       </form>
+                      <a href="{{ route('paket.restore', ['paket' => $paket->id ]) }}" class="btn btn-primary">Restore</a>
                     </td>
                   </tr>
                   @php
@@ -95,7 +92,21 @@
         confirmButtonText: 'Ya, Hapus!'
       }).then((result) => {
         if (result.isConfirmed) {
-
+          $(this).parent().submit()
+        }
+      })
+    })
+        $(".force-delete-all").click(function(){
+      Swal.fire({
+        title: 'Anda yakin ingin menghapus seluruh sampah member',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Tidak',
+        confirmButtonText: 'Ya, Hapus!'
+      }).then((result) => {
+        if (result.isConfirmed) {
           $(this).parent().submit()
         }
       })

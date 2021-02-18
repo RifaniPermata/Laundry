@@ -119,4 +119,34 @@ class PaketController extends Controller
             'keterangan' => ['nullable','string'],
         ]);
     }
+
+        public function trash()
+    {
+        $pakets = Paket::onlyTrashed()->paginate(10);
+        return view('main.paket.trash', compact('pakets'));
+    }
+
+    public function forceDelete($id)
+    {
+        $paket = Paket::withTrashed()->where('id', $id);
+        $paket->forceDelete();
+        return redirect()->route('paket.trash')->with('success', 'Data berhasil dihapus secara permanent');
+    }
+    public function forceDeleteAll()
+    {
+        $pakets = Paket::onlyTrashed()->get();
+        if (!$pakets->first->id) {
+            return redirect()->route('paket.trash')->with('error', 'Tidak ada data dalam sampah');
+        }
+        foreach ($pakets as $paket) {
+            $paket->where('id', $paket->id)->forceDelete();
+        }
+        return redirect()->route('paket.trash')->with('success', 'Seluruh data sampah berhasil dibersihkan');
+    }
+
+    public function restore($id)
+    {
+        Paket::withTrashed()->where('id', $id)->restore();
+        return redirect()->route('paket.trash')->with('restore', 'Data berhasil dipulihkan');
+    }
 }

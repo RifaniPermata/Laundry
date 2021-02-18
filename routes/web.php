@@ -28,7 +28,12 @@ Route::delete('member/permanent/delete/{member}','MemberController@forceDelete')
 Route::delete('member/permanent/delete','MemberController@forceDeleteAll')->name('member.forceDelete.all');
 
 Route::resource('transaksi', 'TransaksiController')->except(['show']);
+
 Route::resource('paket', 'PaketController')->except(['show']);
+Route::get('paket/sampah','PaketController@trash')->name('paket.trash');
+Route::get('paket/restore/{paket}','PaketController@restore')->name('paket.restore');
+Route::delete('paket/permanent/delete/{paket}','PaketController@forceDelete')->name('paket.forceDelete');
+Route::delete('paket/permanent/delete','PaketController@forceDeleteAll')->name('paket.forceDelete.all');
 
 
 Auth::routes();
