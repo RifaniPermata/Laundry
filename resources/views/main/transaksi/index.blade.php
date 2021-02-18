@@ -70,7 +70,7 @@
                   @endphp
                 @empty
                   <tr>
-                  	<td colspan="4" class="text-center">tidak ada data</td>
+                  	<td colspan="12" class="text-center">tidak ada data</td>
                   </tr>
                 @endforelse
                 
@@ -112,18 +112,7 @@
         }
       })
     })
-    @if(session('success'))
-      Swal.fire(
-        'Berhasil',
-        '{{ session('success') }}',
-        'success'
-      )
-    @elseif(session('update'))
-    Swal.fire(
-        'Berhasil',
-        '{{ session('update') }}',
-        'success'
-      )
-    @endif
+    @include('layouts.admin.alert')
+
 </script>
 @endsection

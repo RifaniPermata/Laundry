@@ -28,7 +28,7 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('home') }}" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -111,7 +111,7 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-store"></i>
+              <i class="nav-icon fas fa-users"></i>
               <p>
                 Member
                 <i class="fas fa-angle-left right"></i>
@@ -138,7 +138,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-store"></i>
               <p>
-                Member
+                Transaksi
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -163,8 +163,24 @@
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Member
+                <i class="fas fa-angle-left right"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              
+              <li class="nav-item">
+                <a href="{{ route('member.index') }}" class="nav-link">
+                  <i class="fas fa-clipboard-list nav-icon"></i>
+                  <p>Daftar Member</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('member.create') }}" class="nav-link">
+                  <i class="fas fa-plus-square nav-icon"></i>
+                  <p>Tambah Member</p>
+                </a>
+              </li>
+            </ul>
           </li>
           @else
           

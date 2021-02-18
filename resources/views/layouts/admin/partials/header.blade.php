@@ -48,6 +48,10 @@
     .main-footer {
       color: #212529;
     }
+    .sidebar-search-results a {
+      background-color: #d9d9d9 !important;
+      color: #212529 !important;
+    }
   </style>
   @yield('header-script')
 </head>

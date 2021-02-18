@@ -28,11 +28,11 @@
           <table class="table table-striped table-bordered" >
               <thead>
                   <tr>
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>Alamat</th>
-                    <th>Nomor Telpon</th>
-                    <th>Aksi</th>
+                    <th class="text-center align-middle">No</th>
+                    <th class="text-center align-middle">Nama</th>
+                    <th class="text-center align-middle">Alamat</th>
+                    <th class="text-center align-middle">Nomor Telpon</th>
+                    <th class="text-center align-middle">Aksi</th>
                   </tr>
               </thead>
               <tbody>
@@ -57,7 +57,7 @@
                   @endphp
                 @empty
                   <tr>
-                  	<td colspan="4" class="text-center">tidak ada data</td>
+                  	<td colspan="5" class="text-center">tidak ada data</td>
                   </tr>
                 @endforelse
                 
@@ -95,18 +95,7 @@
         }
       })
     })
-    @if(session('success'))
-      Swal.fire(
-        'Berhasil',
-        '{{ session('success') }}',
-        'success'
-      )
-    @elseif(session('update'))
-    Swal.fire(
-        'Berhasil',
-        '{{ session('update') }}',
-        'success'
-      )
-    @endif
+    @include('layouts.admin.alert')
+
 </script>
 @endsection

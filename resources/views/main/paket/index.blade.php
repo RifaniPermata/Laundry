@@ -27,12 +27,12 @@
           <table class="table table-striped table-bordered" >
               <thead>
                   <tr>
-                    <th style="width: 1%">No</th>
-                    <th>Outlet</th>
-                    <th>Jenis</th>
-                    <th>Nama Paket</th>
-                    <th>Keterangan</th>
-                    <th>Aksi</th>
+                    <th class="text-center align-middle" style="width: 1%">No</th>
+                    <th class="text-center align-middle">Outlet</th>
+                    <th class="text-center align-middle">Jenis</th>
+                    <th class="text-center align-middle">Nama Paket</th>
+                    <th class="text-center align-middle">Keterangan</th>
+                    <th class="text-center align-middle">Aksi</th>
                   </tr>
               </thead>
               <tbody>
@@ -58,7 +58,7 @@
                   @endphp
                 @empty
                   <tr>
-                  	<td colspan="4" class="text-center">tidak ada data</td>
+                  	<td colspan="6" class="text-center">tidak ada data</td>
                   </tr>
                 @endforelse
                 
@@ -100,18 +100,7 @@
         }
       })
     })
-    @if(session('success'))
-      Swal.fire(
-        'Berhasil',
-        '{{ session('success') }}',
-        'success'
-      )
-    @elseif(session('update'))
-    Swal.fire(
-        'Berhasil',
-        '{{ session('update') }}',
-        'success'
-      )
-    @endif
+    @include('layouts.admin.alert')
+
 </script>
 @endsection

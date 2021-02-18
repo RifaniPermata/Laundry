@@ -114,4 +114,31 @@ class MemberController extends Controller
             'tlp' => ['required','digits_between:11,13'],
         ]);
     }
+
+    public function trash()
+    {
+        $members = Member::onlyTrashed()->paginate(10);
+        return view('main.member.trash', compact('members'));
+    }
+
+    public function forceDelete($id)
+    {
+        $member = Member::withTrashed()->where('id', $id);
+        $member->forceDelete();
+        return redirect()->route('member.trash');
+    }
+    public function forceDeleteAll()
+    {
+        $members = Member::onlyTrashed()->get();
+        foreach ($members as $member) {
+            $member->where('id', $member->id)->forceDelete();
+        }
+        return redirect()->route('member.trash');
+    }
+
+    public function restore($id)
+    {
+        Member::withTrashed()->where('id', $id)->restore();
+        return redirect()->route('member.trash')->with('restore', 'Data berhasil dipulihkan');
+    }
 }

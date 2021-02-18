@@ -11,21 +11,19 @@
   $no = $members->firstItem()
 @endphp
 <section class="content">
-      <div class="clearfix mb-2">
-        <div class="float-right">
-          <a href="{{ route('member.trash') }}" class="btn btn-info"><i class="fas fa-trash"></i>&nbsp&nbspSampah</a>
-        </div>
+      <div class="mb-3">
+        <a href="{{ route('member.index') }}" class="btn btn-info"><i class="fas fa-arrow-left"></i>&nbspback</a>
       </div>
+      
       <div class="card overflow-auto">
         <div class="card-header">
-          <h3 class="card-title">Daftar Member</h3>
+          <h3 class="card-title">Data sampah</h3>
           <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-              <i class="fas fa-minus"></i>
-            </button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-              <i class="fas fa-times"></i>
-            </button>
+            <form action="{{ route('member.forceDelete.all') }}" method="post">
+              @csrf
+              @method('delete')
+              <button type="button" class="btn btn-danger force-delete-all">Hapus Semua</button>
+            </form>
           </div>
         </div>
         <div class="card-body p-0">
@@ -49,13 +47,13 @@
                   	<td>{{ $member->jenis_kelamin }}</td>
                   	<td>{{ $member->tlp }}</td>
                     <td>
-                      <a href="{{ route('member.edit', ['member' => $member->id ]) }}" class="btn btn-warning">Edit</a>
                       
-                      <form id="destroy-member" method="post" class="d-inline" action="{{ route('member.destroy',['member' => $member->id  ]) }}">
+                      <form id="destroy-member" method="post" class="d-inline" action="{{ route('member.forceDelete',['member' => $member->id  ]) }}">
                         @csrf
                         @method('delete')
                         <button type="button" class="btn btn-danger btn-member">Hapus</button>
                       </form>
+                      <a href="{{ route('member.restore', ['member' => $member->id ]) }}" class="btn btn-primary">Restore</a>
                     </td>
                   </tr>
                   @php
@@ -63,7 +61,7 @@
                   @endphp
                 @empty
                   <tr>
-                  	<td colspan="4" class="text-center">tidak ada data</td>
+                  	<td colspan="6" class="text-center">tidak ada data</td>
                   </tr>
                 @endforelse
                 
@@ -86,7 +84,28 @@
 <script type="text/javascript">
     $(".btn-member").click(function(){
       Swal.fire({
-        title: 'Anda yakin ingin menghapus data member',
+        title: 'Anda yakin ingin menghapus data member secara permanent',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Tidak',
+        confirmButtonText: 'Ya, Hapus!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          
+          Swal.fire({
+            title :'Terhapus',
+            text: 'Data berhasil dihapus',
+            icon :'success'
+          })
+          $(this).parent().submit()
+        }
+      })
+    })
+    $(".force-delete-all").click(function(){
+      Swal.fire({
+        title: 'Anda yakin ingin menghapus seluruh sampah member',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',

@@ -15,18 +15,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'main.dashboard')->middleware('auth');
 
-Route::resource('outlet', 'OutletController')->except([
-	'show'
-]);
-Route::resource('member', 'MemberController')->except([
-	'show'
-]);
-Route::resource('transaksi', 'TransaksiController')->except([
-	'show'
-]);
-Route::resource('paket', 'PaketController')->except([
-	'show'
-]);
+Route::resource('outlet', 'OutletController')->except(['show']);
+
+Route::resource('member', 'MemberController')->except(['show']);
+Route::get('member/sampah','MemberController@trash')->name('member.trash');
+Route::get('member/restore/{member}','MemberController@restore')->name('member.restore');
+Route::delete('member/permanent/delete/{member}','MemberController@forceDelete')->name('member.forceDelete');
+Route::delete('member/permanent/delete','MemberController@forceDeleteAll')->name('member.forceDelete.all');
+
+Route::resource('transaksi', 'TransaksiController')->except(['show']);
+Route::resource('paket', 'PaketController')->except(['show']);
 
 
 Auth::routes();
