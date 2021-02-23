@@ -43,3 +43,6 @@ Route::delete('paket/permanent/delete','PaketController@forceDeleteAll')->name('
 Auth::routes();
 
 Route::get('/dashboard', 'HomeController@index')->name('home');
+Route::get('/settings', 'SettingController@index')->name('setting');
+Route::post('/settings', 'SettingController@save')->name('setting.save');
+Route::post('/settings/change-password', 'SettingController@changePassword')->name('setting.change.password');

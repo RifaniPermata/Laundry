@@ -111,7 +111,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                  <button type="submit" class="btn btn-primary">Tambah Data</button>
                 </div>
               </form>
             </div>

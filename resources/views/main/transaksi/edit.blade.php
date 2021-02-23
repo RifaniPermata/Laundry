@@ -39,7 +39,7 @@
                       <select class="form-control @error('member_id') is-invalid @enderror" name="member_id" id="member_id">
                           <option value="">Pilih Member</option>
                         @forelse($members as $member)
-                          <option value="{{ $member->nama }}" @if ( $transaksi->member->id == $member->id) {{ 'selected' }} @endif>{{ $transaksi->member->nama }} </option>
+                          <option value="{{ $member->nama }}" @if ( $transaksi->member->id == $member->id) {{ 'selected' }} @endif>{{ $member->nama }} </option>
                         @empty
                         @endforelse
                       </select>
