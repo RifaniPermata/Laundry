@@ -41,6 +41,10 @@
         "classmap": [
             "database/seeds",
             "database/factories"
+        ],
+        "files": [
+            "app/Helpers/FormatRupiah.php",
+            "app/Helpers/TanggalIndonesia.php"
         ]
     },
     "autoload-dev": {
