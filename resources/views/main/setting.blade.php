@@ -7,92 +7,103 @@
 @endsection
 @section('content') 
   <section class="content">
-      <div class="card pl-5 pt-5 pr-3">
-        <form method="post" action="{{ route('setting.save') }}">
-          @csrf
-          <div class="form-group row">
-            <label for="nama" class="col-sm-2 col-form-label">Nama Lengkap</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" placeholder="masukan nama lengkap" value="{{ auth()->user()->nama }}" name="nama" disabled>
-              @error('nama')
-                <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-                </span>
-              @enderror
-            </div>
-            
-          </div>
-          <div class="form-group row">
-            <label for="username" class="col-sm-2 col-form-label">Username</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" placeholder="masukan username" value="{{ auth()->user()->username }}" name="username" disabled>
-              @error('username')
-                <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-                </span>
-              @enderror
-            </div>
-            
-          </div>
-          <div class="form-group row">
-            <label for="password" class="col-sm-2 col-form-label">Password</label>
-            <div class="col-sm-8">
-              <input type="email" class="form-control" id="password" placeholder="*******" disabled>
-            </div>
-            <div class="col-sm-2">
-              <button id="btn-modal" type="button" class="btn btn-primary" data-toggle="modal" data-target="#changepasswordmodal">Ganti Password</button>
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-sm-10">
-              <button id="btn-edit" type="button" class="btn btn-warning">Edit</button>
-              <button id="btn-simpan" type="submit" class="btn btn-primary" disabled="disabled">Simpan</button>
-            </div>
-          </div>
-        </form>
-      </div>  
-
-  <!-- Modal -->
-  <div class="modal fade" id="changepasswordmodal" tabindex="-1" role="dialog" aria-labelledby="changePasswordLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="changePasswordLabel">Ganti Password</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form method="post" action="{{ route('setting.change.password') }}" id="formchangepw">
-          @csrf 
-            <label>Password Baru</label>
-            <div class="input-group mb-3">
-              <input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="password baru" aria-describedby="basic-addon2" autocomplete="new-password" name="password">
-              <div class="input-group-append">
-                <span class="input-group-text btn" onclick="" id="basic-addon1"><i class="fas fa-eye"></i></span>
-              </div>
-              @error('password')
-                <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-                </span>
-              @enderror
-            </div>
-            <label>Konfirmasi Password</label>
-            <div class="input-group mb-3">
-              <input type="password" class="form-control" placeholder="konfirmasi password" aria-describedby="basic-addon2" name="password_confirmation" required autocomplete="new-password">
-              <div class="input-group-append">
-                <span class="input-group-text btn" onclick="" id="basic-addon2"><i class="fas fa-eye"></i></span>
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col">
+            <div class="card">
+              <div class="card-body">
+                <form method="post" action="{{ route('setting.save') }}">
+                  @csrf
+                  <div class="form-group row">
+                    <label for="nama" class="col-sm-2 col-form-label">Nama Lengkap</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" placeholder="masukan nama lengkap" value="{{ auth()->user()->nama }}" name="nama" disabled>
+                      @error('nama')
+                        <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                        </span>
+                      @enderror
+                    </div>
+                    
+                  </div>
+                  <div class="form-group row">
+                    <label for="username" class="col-sm-2 col-form-label">Username</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" placeholder="masukan username" value="{{ auth()->user()->username }}" name="username" disabled>
+                      @error('username')
+                        <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                        </span>
+                      @enderror
+                    </div>
+                    
+                  </div>
+                  <div class="form-group row">
+                    <label for="password" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-8">
+                      <input type="email" class="form-control" id="password" placeholder="*******" disabled>
+                    </div>
+                    <div class="col-sm-2">
+                      <button id="btn-modal" type="button" class="btn btn-primary" data-toggle="modal" data-target="#changepasswordmodal">Ganti Password</button>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-10">
+                      <button id="btn-edit" type="button" class="btn btn-warning">Edit</button>
+                      <button id="btn-simpan" type="submit" class="btn btn-primary" disabled="disabled">Simpan</button>
+                    </div>
+                  </div>
+                </form>
               </div>
             </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-          <button type="button" id="changepassword" class="btn btn-primary">Simpan</button>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+      <!-- Modal -->
+      <div class="modal fade" id="changepasswordmodal" tabindex="-1" role="dialog" aria-labelledby="changePasswordLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="changePasswordLabel">Ganti Password</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form method="post" action="{{ route('setting.change.password') }}" id="formchangepw">
+              @csrf 
+                <label>Password Baru</label>
+                <div class="input-group mb-3">
+                  <input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="password baru" aria-describedby="basic-addon2" autocomplete="new-password" name="password">
+                  <div class="input-group-append">
+                    <span class="input-group-text btn" onclick="" id="basic-addon1"><i class="fas fa-eye"></i></span>
+                  </div>
+                  @error('password')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+                </div>
+                <label>Konfirmasi Password</label>
+                <div class="input-group mb-3">
+                  <input type="password" class="form-control" placeholder="konfirmasi password" aria-describedby="basic-addon2" name="password_confirmation" required autocomplete="new-password">
+                  <div class="input-group-append">
+                    <span class="input-group-text btn" onclick="" id="basic-addon2"><i class="fas fa-eye"></i></span>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+              <button type="button" id="changepassword" class="btn btn-primary">Simpan</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+
+  
   </section>
 @endsection
 

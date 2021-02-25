@@ -51,7 +51,7 @@
                   <div class="row">
                     <div class="form-group col-4">
                       <label for="pajak">Pajak</label>
-                      <input type="number" class="form-control @error('pajak') is-invalid @enderror" id="pajak" name="pajak" placeholder="nilai pajak" value="0">
+                      <input type="number" class="form-control @error('pajak') is-invalid @enderror" id="pajak" name="pajak" placeholder="0%" value="0">
                       @error('pajak')
                           <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
@@ -59,8 +59,8 @@
                       @enderror
                     </div>
                     <div class="form-group col-4">
-                      <label for="diskon">Diskon</label>
-                      <input type="number" class="form-control @error('diskon') is-invalid @enderror" id="diskon" name="diskon" placeholder="potongan harga" value="0">
+                      <label for="diskon">Diskon <span class="text-muted">%</span></label>
+                      <input type="number" class="form-control @error('diskon') is-invalid @enderror" id="diskon" name="diskon" placeholder="0%" value="0">
                       @error('diskon')
                           <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
@@ -78,7 +78,22 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="form-group col-6">
+                    <div class="form-group col-4">
+                      <label for="status">Paket</label>
+                      <select class="form-control @error('paket_id') is-invalid @enderror" name="paket_id" id="paket_id">
+                          <option value="">Pilih Paket</option>
+                        @forelse($pakets as $paket)
+                          <option value="{{ $paket->id }}" @if ( old('paket_id') == $paket->id) {{ 'selected' }} @endif>{{ $paket->jenis . '/' . $paket->nama_paket }} </option>
+                        @empty
+                        @endforelse
+                      </select>
+                      @error('status')
+                          <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                          </span>
+                      @enderror
+                    </div>
+                    <div class="form-group col-4">
                       <label for="status">Status</label>
                       <select class="form-control @error('status') is-invalid @enderror" name="status" id="status">
                         <option value="">Pilih Status Pengerjaan</option>
@@ -93,7 +108,7 @@
                           </span>
                       @enderror
                     </div>
-                    <div class="form-group col-6">
+                    <div class="form-group col-4">
                       <label for="dibayar">Pembayaran</label>
                       <select class="form-control @error('status') is-invalid @enderror" name="dibayar" id="dibayar">
                         <option value="">Pilih Status Pembayaran</option>

@@ -18,7 +18,7 @@ class CreatePaketsTable extends Migration
             $table->foreignId('outlet_id')->constrained()->onDelete('cascade');
             $table->enum('jenis',['kiloan','selimut','bed_cover','kaos','lain']);
             $table->string('nama_paket',100);
-            $table->string('keterangan')->nullable();
+            $table->integer('biaya');
             $table->softDeletes();
             $table->timestamps();
         });

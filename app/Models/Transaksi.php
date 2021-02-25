@@ -11,7 +11,7 @@ class Transaksi extends Model
     
     protected $table = 'transaksis';
     protected $fillable = [
-    	'outlet_id', 'kode_invoice', 'member_id', 'tgl', 'batas_waktu', 'tgl_bayar', 'biaya_tambahan', 'diskon', 'pajak', 'status', 'dibayar', 'user_id'
+    	'outlet_id', 'kode_invoice', 'member_id', 'paket_id', 'tgl', 'batas_waktu', 'tgl_bayar', 'biaya_tambahan', 'diskon', 'pajak', 'status', 'total', 'dibayar', 'user_id'
     ];
 
     public function outlet()

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Transaksi;
 use App\Models\Outlet;
 use App\Models\Member;
+use App\Models\Paket;
 
 class TransaksiController extends Controller
 {
@@ -37,7 +38,8 @@ class TransaksiController extends Controller
     {
         $outlets = Outlet::get();
         $members = Member::orderBy('nama')->get();
-        return view('main.transaksi.add-transaksi', compact('outlets', 'members'));
+        $pakets = Paket::get();
+        return view('main.transaksi.add-transaksi', compact('outlets', 'members','pakets'));
     }
 
     /**
@@ -50,17 +52,20 @@ class TransaksiController extends Controller
     {
         $this->transaksiValidation($request);
         $this->createInvoice();
-
+        $paket = Paket::where('id', $request->paket_id)->first();
+        $biaya = $paket->biaya + ((int) $request->diskon * $paket->biaya / 100) - ((int) $request->pajak * $paket->biaya / 100);
         Transaksi::create([
-            'outlet_id' => (int)$request->outlet_id,
-            'member_id' => (int)$request->member_id,
+            'outlet_id' => (int) $request->outlet_id,
+            'member_id' => (int) $request->member_id,
+            'paket_id' => (int) $request->paket_id,
             'user_id' => auth()->user()->id,
             'kode_invoice' => $this->kodeInvoice,
             'batas_waktu' => now(),
             'tgl_bayar' => now(),
-            'biaya_tambahan' => (int)$request->biaya_tambahan,
+            'biaya_tambahan' => (int) $request->biaya_tambahan,
             'diskon' => (int) $request->diskon,
-            'pajak' => (int)$request->pajak,
+            'total' => $biaya,
+            'pajak' => (int) $request->pajak,
             'status' => $request->status,
             'dibayar' => $request->dibayar,
         ]);
@@ -90,7 +95,8 @@ class TransaksiController extends Controller
         $transaksi = Transaksi::where('id', $id)->first();
         $members = Member::orderBy('nama')->get();
         $outlets = Outlet::all();
-        return view('main.transaksi.edit', compact('transaksi', 'members', 'outlets'));
+        $pakets = Paket::all();
+        return view('main.transaksi.edit', compact('transaksi', 'members', 'outlets','pakets'));
     }
 
     /**
@@ -103,12 +109,15 @@ class TransaksiController extends Controller
     public function update(Request $request, $id)
     {
         $this->transaksiValidation($request);
-
+        $paket = Paket::where('id', $request->paket_id)->first();
+        $biaya = $paket->biaya + ((int) $request->diskon * $paket->biaya / 100) - ((int) $request->pajak * $paket->biaya / 100);
         Transaksi::where('id', $id)->update([
+            'paket_id' => (int) $request->paket_id,
             'batas_waktu' => now(),
             'tgl_bayar' => now(),
             'biaya_tambahan' => (int)$request->biaya_tambahan,
             'diskon' => (int) $request->diskon,
+            'total' => $biaya,
             'pajak' => (int)$request->pajak,
             'status' => $request->status,
             'dibayar' => $request->dibayar,
@@ -133,6 +142,7 @@ class TransaksiController extends Controller
         $validation = $request->validate([
             'outlet_id' => ['required'],
             'member_id' => ['required'],
+            'paket_id' => ['required'],
             'biaya_tambahan' => ['integer'],
             'diskon' => ['integer'],
             'pajak' => ['integer'],

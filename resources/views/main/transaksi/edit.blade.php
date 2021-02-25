@@ -79,7 +79,22 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="form-group col-6">
+                    <div class="form-group col-4">
+                      <label for="status">Paket</label>
+                      <select class="form-control @error('paket_id') is-invalid @enderror" name="paket_id" id="paket_id">
+                          <option value="">Pilih Paket</option>
+                        @forelse($pakets as $paket)
+                          <option value="{{ $paket->id }}" @if ( $transaksi->paket_id == $paket->id) {{ 'selected' }} @endif>{{ $paket->jenis . '/' . $paket->nama_paket }} {{ $transaksi->paket_id . '/' . $paket->id }}</option>
+                        @empty
+                        @endforelse
+                      </select>
+                      @error('status')
+                          <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                          </span>
+                      @enderror
+                    </div>
+                    <div class="form-group col-4">
                       <label for="status">Status</label>
                       <select class="form-control @error('status') is-invalid @enderror" name="status" id="status">
                         <option value="">Pilih Status Pengerjaan</option>
@@ -94,7 +109,7 @@
                           </span>
                       @enderror
                     </div>
-                    <div class="form-group col-6">
+                    <div class="form-group col-4">
                       <label for="dibayar">Pembayaran</label>
                       <select class="form-control @error('status') is-invalid @enderror" name="dibayar" id="dibayar">
                         <option value="">Pilih Status Pembayaran</option>

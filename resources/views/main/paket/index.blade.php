@@ -36,7 +36,7 @@
                     <th class="text-center align-middle">Outlet</th>
                     <th class="text-center align-middle">Jenis</th>
                     <th class="text-center align-middle">Nama Paket</th>
-                    <th class="text-center align-middle">Keterangan</th>
+                    <th class="text-center align-middle">Biaya</th>
                     <th class="text-center align-middle">Aksi</th>
                   </tr>
               </thead>
@@ -47,7 +47,7 @@
                   	<td>{{ $paket->outlet->nama }}</td>
                     <td>{{ $paket->jenis }}</td>
                   	<td>{{ $paket->nama_paket }}</td>
-                  	<td>{{ $paket->keterangan }}</td>
+                  	<td>{{ $paket->biaya }}</td>
                     <td>
                       <a href="{{ route('paket.edit', ['paket' => $paket->id ]) }}" class="btn btn-warning">Edit</a>
                       
