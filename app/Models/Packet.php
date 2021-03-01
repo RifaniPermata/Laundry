@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
-class Paket extends Model
+class Packet extends Model
 {
 	use SoftDeletes;
 	
-    protected $table = 'pakets';
+    protected $table = 'packets';
     protected $fillable = [
-    	'outlet_id', 'jenis', 'nama_paket', 'keterangan'
+    	'outlet_id', 'type', 'packet_name', 'cost'
     ];
 
     public function outlet()

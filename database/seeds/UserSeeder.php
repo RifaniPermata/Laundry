@@ -15,12 +15,12 @@ class UserSeeder extends Seeder
         $users = ['owner','admin','kasir'];
         foreach ($users as $user) {
             User::create([
-                'nama' => ucfirst($user) . ' Laundry',
+                'name' => ucfirst($user) . ' Laundry',
                 'username' => $user,
                 'password' => Hash::make($user),
                 'outlet_id' => 1,
                 'role' => $user,
-                'kode' => substr($user, 0,3),
+                'code' => substr($user, 0,3),
             ]);
         }
 

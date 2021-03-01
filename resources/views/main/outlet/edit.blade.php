@@ -21,9 +21,9 @@
                 @method('put')
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="nama">Nama Outlet</label>
-                    <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" placeholder="nama outlet ..." value="{{ $outlet->nama }}">
-                    @error('nama')
+                    <label for="name">Nama Outlet</label>
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="nama outlet ..." value="{{ $outlet->name }}">
+                    @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -39,9 +39,9 @@
                     @enderror
                   </div>
                   <div class="form-group">
-                    <label for="alamat">Alamat Outlet</label>
-                    <textarea class="form-control @error('alamat') is-invalid @enderror" placeholder="Alamat lengkap ..." name="alamat" id="alamat">{{ $outlet->alamat }}</textarea>
-                    @error('alamat')
+                    <label for="address">Alamat Outlet</label>
+                    <textarea class="form-control @error('address') is-invalid @enderror" placeholder="Alamat lengkap ..." name="address" id="address">{{ $outlet->address }}</textarea>
+                    @error('address')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -51,7 +51,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Tambah Outlet</button>
+                  <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                 </div>
               </form>
             </div>

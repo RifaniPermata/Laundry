@@ -23,7 +23,7 @@
                     <label for="outlet_id">Nama Outlet</label>
                       <select class="form-control @error('outlet_id') is-invalid @enderror" name="outlet_id" id="outlet_id">
                         @forelse($outlets as $outlet)
-                          <option value="{{ $outlet->id }}" @if ( old('outlet_id') == $outlet->id) {{ 'selected' }} @endif>{{ $outlet->nama }} </option>
+                          <option value="{{ $outlet->id }}" @if ( old('outlet_id') == $outlet->id) {{ 'selected' }} @endif>{{ $outlet->name }} </option>
                         @empty
                         @endforelse
                       </select>
@@ -38,7 +38,7 @@
                       <select class="form-control @error('member_id') is-invalid @enderror" name="member_id" id="member_id">
                           <option value="">Pilih Member</option>
                         @forelse($members as $member)
-                          <option value="{{ $member->id }}" @if ( old('member_id') == $member->id) {{ 'selected' }} @endif>{{ $member->nama }} </option>
+                          <option value="{{ $member->id }}" @if ( old('member_id') == $member->id) {{ 'selected' }} @endif>{{ $member->name }} </option>
                         @empty
                         @endforelse
                       </select>
@@ -50,27 +50,27 @@
                   </div>
                   <div class="row">
                     <div class="form-group col-4">
-                      <label for="pajak">Pajak</label>
-                      <input type="number" class="form-control @error('pajak') is-invalid @enderror" id="pajak" name="pajak" placeholder="0%" value="0">
-                      @error('pajak')
+                      <label for="tax">Pajak</label>
+                      <input type="number" class="form-control @error('tax') is-invalid @enderror" id="tax" name="tax" placeholder="0%" value="0">
+                      @error('tax')
                           <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
                           </span>
                       @enderror
                     </div>
                     <div class="form-group col-4">
-                      <label for="diskon">Diskon <span class="text-muted">%</span></label>
-                      <input type="number" class="form-control @error('diskon') is-invalid @enderror" id="diskon" name="diskon" placeholder="0%" value="0">
-                      @error('diskon')
+                      <label for="discon">Diskon <span class="text-muted">%</span></label>
+                      <input type="number" class="form-control @error('discon') is-invalid @enderror" id="discon" name="discon" placeholder="0%" value="0">
+                      @error('discon')
                           <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
                           </span>
                       @enderror
                     </div>
                     <div class="form-group col-4">
-                      <label for="biaya_tambahan">Biaya Tambahan</label>
-                      <input type="number" class="form-control @error('biaya_tambahan') is-invalid @enderror" id="biaya_tambahan" name="biaya_tambahan" placeholder="biaya tambahan" value="0">
-                      @error('biaya_tambahan')
+                      <label for="cost_additional">Biaya Tambahan</label>
+                      <input type="number" class="form-control @error('cost_additional') is-invalid @enderror" id="cost_additional" name="cost_additional" placeholder="biaya tambahan" value="0">
+                      @error('cost_additional')
                           <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
                           </span>
@@ -79,11 +79,11 @@
                   </div>
                   <div class="row">
                     <div class="form-group col-4">
-                      <label for="status">Paket</label>
-                      <select class="form-control @error('paket_id') is-invalid @enderror" name="paket_id" id="paket_id">
+                      <label for="packet_id">Paket</label>
+                      <select class="form-control @error('packet_id') is-invalid @enderror" name="packet_id" id="packet_id">
                           <option value="">Pilih Paket</option>
                         @forelse($pakets as $paket)
-                          <option value="{{ $paket->id }}" @if ( old('paket_id') == $paket->id) {{ 'selected' }} @endif>{{ $paket->jenis . '/' . $paket->nama_paket }} </option>
+                          <option value="{{ $paket->id }}" @if ( old('packet_id') == $paket->id) {{ 'selected' }} @endif>{{ $paket->type . '/' . $paket->packet_name }} </option>
                         @empty
                         @endforelse
                       </select>
@@ -109,13 +109,13 @@
                       @enderror
                     </div>
                     <div class="form-group col-4">
-                      <label for="dibayar">Pembayaran</label>
-                      <select class="form-control @error('status') is-invalid @enderror" name="dibayar" id="dibayar">
+                      <label for="paid">Pembayaran</label>
+                      <select class="form-control @error('paid') is-invalid @enderror" name="paid" id="paid">
                         <option value="">Pilih Status Pembayaran</option>
-                        <option value="dibayar" @if ( old('dibayar') == 'dibayar') {{ 'selected' }} @endif>Dibayar</option>
-                        <option value="belum_dibayar" @if ( old('dibayar') == 'belum_dibayar') {{ 'selected' }} @endif>Belum Dibayar</option>
+                        <option value="dibayar" @if ( old('paid') == 'dibayar') {{ 'selected' }} @endif>Dibayar</option>
+                        <option value="belum_dibayar" @if ( old('paid') == 'belum_dibayar') {{ 'selected' }} @endif>Belum Dibayar</option>
                       </select>
-                      @error('status')
+                      @error('paid')
                           <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
                           </span>

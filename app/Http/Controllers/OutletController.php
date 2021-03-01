@@ -42,10 +42,9 @@ class OutletController extends Controller
     public function store(Request $request)
     {
         $this->outletValidation($request);
-
         Outlet::create([
-            'nama' => $request->nama,
-            'alamat' => $request->alamat,
+            'name' => $request->name,
+            'address' => $request->address,
             'tlp' => $request->tlp,
         ]);
 
@@ -54,17 +53,6 @@ class OutletController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -86,8 +74,8 @@ class OutletController extends Controller
     {
         $this->outletValidation($request);
         Outlet::where('id', $id)->update([
-            'nama' => $request->nama,
-            'alamat' => $request->alamat,
+            'name' => $request->name,
+            'address' => $request->address,
             'tlp' => $request->tlp,
         ]);
         return redirect()->route('outlet.index')->with('update', 'Data berhasil diperbarui');
@@ -108,8 +96,8 @@ class OutletController extends Controller
     private function outletValidation($request)
     {
         $validation = $request->validate([
-            'nama' => ['required', 'max:100'],
-            'alamat' => ['required','string'],
+            'name' => ['required', 'max:100'],
+            'address' => ['required','string'],
             'tlp' => ['required','digits_between:11,13'],
         ]);  
     }

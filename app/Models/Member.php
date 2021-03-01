@@ -11,7 +11,7 @@ class Member extends Model
 	
     protected $table = 'members';
     protected $fillable = [
-    	'nama', 'alamat','jenis_kelamin', 'tlp'
+    	'name', 'address','gender', 'tlp'
     ];
 
     public function transaksis()

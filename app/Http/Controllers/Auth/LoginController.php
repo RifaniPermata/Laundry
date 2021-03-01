@@ -46,7 +46,7 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         auth()->user()->logLogins()->create([
-            'keterangan' => 'login'
+            'information' => 'login'
         ]);
     }
 }

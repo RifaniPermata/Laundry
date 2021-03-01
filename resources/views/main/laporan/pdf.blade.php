@@ -68,7 +68,7 @@
     <table class="table table-striped" border="1" align="center">
       <thead>
         <tr>
-          <th class="text-center align-middle">No</th>
+          <th class="text-center align-middle" style="width: 7%">No</th>
           <th class="text-center align-middle">Tanggal</th>
           <th class="text-center align-middle">Invoice</th>
           <th class="text-center align-middle">Pemasukan</th>
@@ -79,9 +79,9 @@
           @php $total = $total + $data->total @endphp
         <tr>
             <td>{{ $loop->iteration }}</td>
-            <td>{{ $data->updated_at }}</td>
-            <td>{{ $data->kode_invoice }}</td> 
-            <td>{{ $data->total }}</td>
+            <td>{{ tanggalIndonesia($data->updated_at) }}</td>
+            <td>{{ $data->invoice_code }}</td> 
+            <td>{{ formatRp($data->total) }}</td>
         </tr>
           @empty
         <tr>
@@ -90,7 +90,7 @@
           @endforelse
         <tr>
           <td colspan="3" class="font-weight-bold">Total</td>
-          <td>{{ $total }}</td>
+          <td>{{ formatRp($total) }}</td>
         </tr>
       </tbody>
     </table>

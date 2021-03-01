@@ -11,7 +11,7 @@ class Outlet extends Model
     
     protected $table = 'outlets';
     protected $fillable = [
-    	'nama','alamat','tlp'
+    	'name','address','tlp'
     ];
 
     public function users()

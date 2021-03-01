@@ -43,9 +43,9 @@ class MemberController extends Controller
     {
         $this->memberValidation($request);
         Member::create([
-            'nama' => $request->nama,
-            'alamat' => $request->alamat,
-            'jenis_kelamin' => $request->jenis_kelamin,
+            'name' => $request->name,
+            'address' => $request->address,
+            'gender' => $request->gender,
             'tlp' => $request->tlp,
         ]);
         
@@ -85,9 +85,9 @@ class MemberController extends Controller
     {
         $this->memberValidation($request);
         Member::where('id', $id)->update([
-            'nama' => $request->nama,
-            'alamat' => $request->alamat,
-            'alamat' => $request->alamat,
+            'name' => $request->name,
+            'address' => $request->address,
+            'gender' => $request->gender,
             'tlp' => $request->tlp,
         ]);
         return redirect()->route('member.index')->with('update', 'Data berhasil diperbarui');
@@ -108,9 +108,9 @@ class MemberController extends Controller
     private function memberValidation($request)
     {
         $validation = $request->validate([
-            'nama' => ['required', 'max:100'],
-            'alamat' => ['required','string'],
-            'jenis_kelamin' => ['required','size:1'],
+            'name' => ['required', 'max:100'],
+            'address' => ['required','string'],
+            'gender' => ['required','size:1'],
             'tlp' => ['required','digits_between:11,13'],
         ]);
     }

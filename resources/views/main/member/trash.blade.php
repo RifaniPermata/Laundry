@@ -42,9 +42,9 @@
               	@forelse($members as $member)
                   <tr>
                   	<td>{{ $no }}</td>
-                  	<td>{{ $member->nama }}</td>
-                    <td>{{ $member->alamat }}</td>
-                  	<td>{{ $member->jenis_kelamin }}</td>
+                  	<td>{{ $member->name }}</td>
+                    <td>{{ $member->address }}</td>
+                  	<td class="text-center">{{ $member->gender }}</td>
                   	<td>{{ $member->tlp }}</td>
                     <td>
                       

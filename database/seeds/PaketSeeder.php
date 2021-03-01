@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Paket;
+use App\Models\Packet;
 
 class PaketSeeder extends Seeder
 {
@@ -12,15 +12,15 @@ class PaketSeeder extends Seeder
      */
     public function run()
     {	
-    	$jenis = ['kiloan','selimut','bed_cover','kaos','lain'];
-    	$namaPaket = ['express 6 jam', '12 jam', '1 hari'];
-    	for ($i = 0; $i < count($jenis); $i++) {
-    		for ($a = 0; $a < count($namaPaket) ; $a++) {
-	    		Paket::create([
+    	$type = ['kiloan','selimut','bed_cover','kaos','lain'];
+    	$packetName = ['express 6 jam', '12 jam', '1 hari'];
+    	for ($i = 0; $i < count($type); $i++) {
+    		for ($a = 0; $a < count($packetName) ; $a++) {
+	    		Packet::create([
 	    			'outlet_id' => 1,
-					'jenis' => $jenis[$i],
-					'nama_paket' => $namaPaket[$a],
-					'biaya' => 700 * rand(1,10),
+					'type' => $type[$i],
+					'packet_name' => $packetName[$a],
+					'cost' => 700 * rand(1,10),
 	    		]);
 	    	}
     	}

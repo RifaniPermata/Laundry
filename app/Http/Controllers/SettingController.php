@@ -15,11 +15,11 @@ class SettingController extends Controller
     public function save(Request $request)
     {
     	$validation = $request->validate([
-            'nama' => ['required', 'max:100'],
+            'name' => ['required', 'max:100'],
             'username' => ['required','unique:users'],
         ]);
     	$user = User::find(auth()->user()->id);
-    	$user->nama = $request->nama;
+    	$user->name = $request->name;
     	$user->username = $request->username;
     	$user->save();
 

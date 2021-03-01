@@ -6,11 +6,11 @@ use App\Models\Member;
 use Faker\Generator as Faker;
 
 $factory->define(Member::class, function (Faker $faker) {
-	$jk = ['L','P','L','P'];
+	$gender = ['L','P','L','P'];
     return [
-        'nama' => $faker->name,
-		'alamat' => $faker->address,
-		'jenis_kelamin' => $jk[array_rand($jk)],
+        'name' => $faker->name,
+		'address' => $faker->address,
+		'gender' => $gender[array_rand($gender)],
 		'tlp' => $faker->phoneNumber,
     ];
 });

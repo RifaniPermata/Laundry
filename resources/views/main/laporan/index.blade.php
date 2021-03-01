@@ -30,9 +30,9 @@
                       @php $total = $total + $data->total @endphp
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $data->updated_at }}</td>
-                        <td>{{ $data->kode_invoice }}</td> 
-                        <td>{{ $data->total }}</td>
+                        <td>{{ tanggalIndonesia($data->updated_at) }}</td>
+                        <td>{{ $data->invoice_code }}</td> 
+                        <td>{{ formatRp($data->total) }}</td>
                     </tr>
                       @empty
                     <tr>
@@ -41,7 +41,7 @@
                       @endforelse
                     <tr>
                       <td colspan="3" class="font-weight-bold">Total</td>
-                      <td>{{ $total }}</td>
+                      <td>{{ formatRp($total) }}</td>
                     </tr>
                   </tbody>
                 </table>

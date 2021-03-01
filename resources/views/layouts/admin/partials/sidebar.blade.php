@@ -9,7 +9,7 @@
           <img src="{{ asset('assets/dist/img/avatar.png') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block info-name">{{ Auth::user()->nama }}</a>
+          <a href="#" class="d-block info-name">{{ Auth::user()->name }}</a>
         </div>
       </div>
 

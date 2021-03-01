@@ -7,21 +7,21 @@ use Faker\Generator as Faker;
 
 $factory->define(Transaksi::class, function (Faker $faker) {
 	
-	$bayar = ['dibayar','belum_dibayar'];
+	$paid = ['dibayar','belum_dibayar'];
 	$status = ['baru','proses','selesai','diambil'];
     return [
     	'outlet_id' => 1,
     	'member_id' => rand(1,15),
     	'user_id' => 3,
-    	'paket_id' => 1,
-        'kode_invoice' => 'KODE/INCOVIE',
-		'batas_waktu' => now(),
-		'tgl_bayar' => now(),
-		'biaya_tambahan' => 0,
-		'diskon' => 0,
-		'pajak' => 0,
-		'pajak' => 150000,
+    	'packet_id' => 1,
+        'invoice_code' => 'KODE/INCOVIE',
+		'deadline' => now(),
+		'pay_date' => now(),
+		'cost_additional' => 0,
+		'discon' => 0,
+		'tax' => 0,
+		'total' => 150000,
 		'status' => $status[array_rand($status)],
-		'dibayar' => $bayar[array_rand($bayar)],
+		'paid' => $paid[array_rand($paid)],
     ];
 });

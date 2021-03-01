@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Transaksi;
 use App\Models\Outlet;
 use App\Models\Member;
-use App\Models\Paket;
+use App\Models\Packet;
 
 class TransaksiController extends Controller
 {
@@ -37,8 +37,8 @@ class TransaksiController extends Controller
     public function create()
     {
         $outlets = Outlet::get();
-        $members = Member::orderBy('nama')->get();
-        $pakets = Paket::get();
+        $members = Member::orderBy('name')->get();
+        $pakets = Packet::get();
         return view('main.transaksi.add-transaksi', compact('outlets', 'members','pakets'));
     }
 
@@ -52,22 +52,22 @@ class TransaksiController extends Controller
     {
         $this->transaksiValidation($request);
         $this->createInvoice();
-        $paket = Paket::where('id', $request->paket_id)->first();
-        $biaya = $paket->biaya + ((int) $request->diskon * $paket->biaya / 100) - ((int) $request->pajak * $paket->biaya / 100);
+        $paket = Packet::where('id', $request->packet_id)->first();
+        $cost = $paket->cost + ((int) $request->discon * $paket->cost / 100) - ((int) $request->tax * $paket->cost / 100);
         Transaksi::create([
             'outlet_id' => (int) $request->outlet_id,
             'member_id' => (int) $request->member_id,
-            'paket_id' => (int) $request->paket_id,
+            'packet_id' => (int) $request->packet_id,
             'user_id' => auth()->user()->id,
-            'kode_invoice' => $this->kodeInvoice,
-            'batas_waktu' => now(),
-            'tgl_bayar' => now(),
-            'biaya_tambahan' => (int) $request->biaya_tambahan,
-            'diskon' => (int) $request->diskon,
-            'total' => $biaya,
-            'pajak' => (int) $request->pajak,
+            'invoice_code' => $this->kodeInvoice,
+            'deadline' => now(),
+            'pay_date' => now(),
+            'cost_additional' => (int) $request->cost_additional,
+            'discon' => (int) $request->discon,
+            'total' => $cost,
+            'tax' => (int) $request->tax,
             'status' => $request->status,
-            'dibayar' => $request->dibayar,
+            'paid' => $request->paid,
         ]);
         return redirect()->route('transaksi.index')->with('success', 'Transaksi baru berhasil ditambahkan');
 
@@ -79,23 +79,12 @@ class TransaksiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $transaksi = Transaksi::where('id', $id)->first();
-        $members = Member::orderBy('nama')->get();
+        $members = Member::orderBy('name')->get();
         $outlets = Outlet::all();
-        $pakets = Paket::all();
+        $pakets = Packet::all();
         return view('main.transaksi.edit', compact('transaksi', 'members', 'outlets','pakets'));
     }
 
@@ -109,18 +98,18 @@ class TransaksiController extends Controller
     public function update(Request $request, $id)
     {
         $this->transaksiValidation($request);
-        $paket = Paket::where('id', $request->paket_id)->first();
-        $biaya = $paket->biaya + ((int) $request->diskon * $paket->biaya / 100) - ((int) $request->pajak * $paket->biaya / 100);
+        $paket = Packet::where('id', $request->packet_id)->first();
+        $cost = $paket->cost + ((int) $request->discon * $paket->cost / 100) - ((int) $request->tax * $paket->cost / 100);
         Transaksi::where('id', $id)->update([
-            'paket_id' => (int) $request->paket_id,
-            'batas_waktu' => now(),
-            'tgl_bayar' => now(),
-            'biaya_tambahan' => (int)$request->biaya_tambahan,
-            'diskon' => (int) $request->diskon,
-            'total' => $biaya,
-            'pajak' => (int)$request->pajak,
+            'packet_id' => (int) $request->packet_id,
+            'deadline' => now(),
+            'pay_date' => now(),
+            'cost_additional' => (int)$request->cost_additional,
+            'discon' => (int) $request->discon,
+            'total' => $cost,
+            'tax' => (int)$request->tax,
             'status' => $request->status,
-            'dibayar' => $request->dibayar,
+            'paid' => $request->paid,
         ]);
         return redirect()->route('transaksi.index')->with('success', 'Transaksi berhasil diedit');
     }
@@ -142,12 +131,9 @@ class TransaksiController extends Controller
         $validation = $request->validate([
             'outlet_id' => ['required'],
             'member_id' => ['required'],
-            'paket_id' => ['required'],
-            'biaya_tambahan' => ['integer'],
-            'diskon' => ['integer'],
-            'pajak' => ['integer'],
+            'packet_id' => ['required'],
             'status' => ['required','string'],
-            'dibayar' => ['required','string'],
+            'paid' => ['required','string'],
         ]);
     }
 

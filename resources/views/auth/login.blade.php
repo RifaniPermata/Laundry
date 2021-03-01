@@ -11,14 +11,14 @@
             <span>Masuk ke aplikasi ARL Laundry</span>
           </div>
           <div class="text-center">
-            <h5 class="text-black">Selamat datang di ARL Laundry</h5>
+            <h5 class="text-black">Selamat datang di {{ config('app.name')}}</h5>
             <p class="description">anda bisa masuk menggunakan akun yang sudah diberikan manager</p>
           </div>
 
           <form action="{{ route('login') }}" method="post">
             @csrf
             <div class="input-group mb-3">
-              <input id="username" type="username" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus placeholder="username">
+              <input id="username" type="username" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="off" autofocus placeholder="username">
               @error('username')
                 <span class="invalid-feedback bg-white text-danger" role="alert">
                     <strong>{{ $message }}</strong>
@@ -26,7 +26,7 @@
               @enderror
             </div>
             <div class="input-group mb-3">
-              <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocowmplete="current-password" placeholder="Password">
+              <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
               @error('password')
                 <span class="invalid-feedback bg-white text-danger" role="alert">
                     <strong>{{ $message }}</strong>

@@ -15,8 +15,8 @@ class CreateOutletsTable extends Migration
     {
         Schema::create('outlets', function (Blueprint $table) {
             $table->id();
-            $table->string('nama',100);
-            $table->text('alamat');
+            $table->string('name',100);
+            $table->text('address');
             $table->string('tlp',15);
             $table->softDeletes();
             $table->timestamps();

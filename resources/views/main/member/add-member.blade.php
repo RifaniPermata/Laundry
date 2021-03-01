@@ -20,22 +20,22 @@
               	@csrf
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="nama">Nama Lengkap</label>
-                    <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" placeholder="nama lengkap ..." value="{{ old('nama') }}">
-                    @error('nama')
+                    <label for="name">Nama Lengkap</label>
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="nama lengkap ..." value="{{ old('name') }}">
+                    @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                   </div>
                   <div class="form-group">
-                    <label for="nama">Jenis Kelamin</label>
-                    <select class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin">
+                    <label for="gender">Jenis Kelamin</label>
+                    <select class="form-control @error('gender') is-invalid @enderror" name="gender">
                       <option value="">Pilih Jenis Kelamin</option>
-                      <option value="L" @if (old('jenis_kelamin') == 'L') {{ 'selected' }} @endif>Laki - laki</option>
-                      <option value="P" @if (old('jenis_kelamin') == 'P') {{ 'selected' }} @endif>Perempuan</option>
+                      <option value="L" @if (old('gender') == 'L') {{ 'selected' }} @endif>Laki - laki</option>
+                      <option value="P" @if (old('gender') == 'P') {{ 'selected' }} @endif>Perempuan</option>
                     </select>
-                    @error('jenis_kelamin')
+                    @error('gender')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -51,9 +51,9 @@
                     @enderror
                   </div>
                   <div class="form-group">
-                    <label for="alamat">Alamat Lengkap</label>
-                    <textarea class="form-control @error('alamat') is-invalid @enderror" placeholder="Alamat lengkap ..." name="alamat" id="alamat">{{ old('alamat') }}</textarea>
-                    @error('alamat')
+                    <label for="address">Alamat Lengkap</label>
+                    <textarea class="form-control @error('address') is-invalid @enderror" placeholder="Alamat lengkap ..." name="address" id="address">{{ old('address') }}</textarea>
+                    @error('address')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>

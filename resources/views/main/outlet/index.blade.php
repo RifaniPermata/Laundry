@@ -43,8 +43,8 @@
               	@forelse($outlets as $outlet)
                   <tr>
                   	<td style="width: 1%">{{ $no}}</td>
-                  	<td>{{ $outlet->nama }}</td>
-                  	<td>{{ $outlet->alamat }}</td>
+                  	<td>{{ $outlet->name }}</td>
+                  	<td>{{ $outlet->address }}</td>
                   	<td>{{ $outlet->tlp }}</td>
                     <td>
                       <a href="{{ route('outlet.edit', ['outlet' => $outlet->id ]) }}" class="btn btn-warning">Edit</a>

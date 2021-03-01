@@ -16,7 +16,7 @@ class CreateLogLoginsTable extends Migration
         Schema::create('log_logins', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('keterangan');
+            $table->string('information');
             $table->timestamps();
         });
     }

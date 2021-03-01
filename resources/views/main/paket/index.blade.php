@@ -44,10 +44,10 @@
               	@forelse($pakets as $paket)
                   <tr>
                   	<td>{{ $no }}</td>
-                  	<td>{{ $paket->outlet->nama }}</td>
-                    <td>{{ $paket->jenis }}</td>
-                  	<td>{{ $paket->nama_paket }}</td>
-                  	<td>{{ $paket->biaya }}</td>
+                  	<td>{{ $paket->outlet->name }}</td>
+                    <td>{{ $paket->type }}</td>
+                  	<td>{{ $paket->packet_name }}</td>
+                  	<td>{{ formatRp($paket->cost) }}</td>
                     <td>
                       <a href="{{ route('paket.edit', ['paket' => $paket->id ]) }}" class="btn btn-warning">Edit</a>
                       

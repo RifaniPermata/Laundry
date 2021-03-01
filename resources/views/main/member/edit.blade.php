@@ -21,22 +21,22 @@
               	@method('put')
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="nama">Nama Lengkap</label>
-                    <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" placeholder="nama lengkap ..." value="{{ $member->nama }}">
-                    @error('nama')
+                    <label for="name">Nama Lengkap</label>
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="nama lengkap ..." value="{{ $member->name }}">
+                    @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                   </div>
                   <div class="form-group">
-                    <label for="nama">Jenis Kelamin</label>
-                    <select class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin">
+                    <label for="gender">Jenis Kelamin</label>
+                    <select class="form-control @error('gender') is-invalid @enderror" name="gender">
                       <option value="">Pilih Jenis Kelamin</option>
-                      <option value="L" @if ($member->jenis_kelamin == 'L') {{ 'selected' }} @endif>Laki - laki</option>
-                      <option value="P" @if ($member->jenis_kelamin == 'P') {{ 'selected' }} @endif>Perempuan</option>
+                      <option value="L" @if ($member->gender == 'L') {{ 'selected' }} @endif>Laki - laki</option>
+                      <option value="P" @if ($member->gender == 'P') {{ 'selected' }} @endif>Perempuan</option>
                     </select>
-                    @error('jenis_kelamin')
+                    @error('gender')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -44,7 +44,7 @@
                   </div>
                   <div class="form-group">
                     <label for="tlp">Nomor Telpon</label>
-                    <input type="number" class="form-control @error('tlp') is-invalid @enderror" id="tlp" name="tlp" placeholder="081222333444" value="{{ $member->tlp }}12">
+                    <input type="number" class="form-control @error('tlp') is-invalid @enderror" id="tlp" name="tlp" placeholder="081222333444" value="{{ $member->tlp }}">
                     @error('tlp')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -52,9 +52,9 @@
                     @enderror
                   </div>
                   <div class="form-group">
-                    <label for="alamat">Alamat Lengkap</label>
-                    <textarea class="form-control @error('alamat') is-invalid @enderror" placeholder="Alamat lengkap ..." name="alamat" id="alamat">{{ $member->alamat }}</textarea>
-                    @error('alamat')
+                    <label for="address">Alamat Lengkap</label>
+                    <textarea class="form-control @error('address') is-invalid @enderror" placeholder="Alamat lengkap ..." name="address" id="address">{{ $member->address }}</textarea>
+                    @error('address')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>

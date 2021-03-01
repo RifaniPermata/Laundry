@@ -47,6 +47,12 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+    public function showRegistrationForm()
+    {
+        return redirect()->route('login');
+        // return view('auth.register');
+    }
+    
     protected function validator(array $data)
     {
         return Validator::make($data, [

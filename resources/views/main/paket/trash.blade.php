@@ -33,7 +33,7 @@
                     <th class="text-center align-middle">Outlet</th>
                     <th class="text-center align-middle">Jenis</th>
                     <th class="text-center align-middle">Nama Paket</th>
-                    <th class="text-center align-middle">Keterangan</th>
+                    <th class="text-center align-middle">Biaya</th>
                     <th class="text-center align-middle">Aksi</th>
                   </tr>
               </thead>
@@ -41,10 +41,10 @@
               	@forelse($pakets as $paket)
                   <tr>
                   	<td>{{ $no }}</td>
-                  	<td>{{ $paket->outlet->nama }}</td>
-                    <td>{{ $paket->jenis }}</td>
-                  	<td>{{ $paket->nama_paket }}</td>
-                  	<td>{{ $paket->keterangan }}</td>
+                    <td>{{ $paket->outlet->name }}</td>
+                    <td>{{ $paket->type }}</td>
+                    <td>{{ $paket->packet_name }}</td>
+                    <td>{{ formatRp($paket->cost) }}</td>
                     <td>
                       
                       <form id="destroy-outlet" method="post" class="d-inline" action="{{ route('paket.forceDelete',['paket' => $paket->id  ]) }}">

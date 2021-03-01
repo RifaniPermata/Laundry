@@ -47,15 +47,15 @@
                 @forelse($transaksis as $transaksi)
                   <tr>
                     <td>{{ $no }}</td>
-                    <td>{{ $transaksi->outlet->nama }}</td>
-                    <td>{{ $transaksi->kode_invoice }}</td>
-                    <td>{{ $transaksi->member->nama }}</td>
-                    <td>{{ $transaksi->user->nama }}</td>
-                    <td>{{ $transaksi->batas_waktu }}</td>
-                    <td>{{ $transaksi->biaya_tambahan }}</td>
-                    <td>{{ $transaksi->diskon }}</td>
-                    <td>{{ $transaksi->pajak }}</td>
-                    <td>{{ $transaksi->dibayar }}</td>
+                    <td>{{ $transaksi->outlet->name }}</td>
+                    <td>{{ $transaksi->invoice_code }}</td>
+                    <td>{{ $transaksi->member->name }}</td>
+                    <td>{{ $transaksi->user->name }}</td>
+                    <td>{{ $transaksi->deadline }}</td>
+                    <td>{{ $transaksi->cost_additional }}</td>
+                    <td>{{ $transaksi->discon }}</td>
+                    <td>{{ $transaksi->tax }}</td>
+                    <td>{{ $transaksi->paid }}</td>
                     <td>{{ $transaksi->status }}</td>
                     <td>
                       <form method="post" class="d-inline" action="{{ route('transaksi.forceDelete',['transaksi' => $transaksi->id  ]) }}">

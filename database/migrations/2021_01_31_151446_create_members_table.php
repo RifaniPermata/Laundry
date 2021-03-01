@@ -15,9 +15,9 @@ class CreateMembersTable extends Migration
     {
         Schema::create('members', function (Blueprint $table) {
             $table->id();
-            $table->string('nama',100);
-            $table->text('alamat');
-            $table->enum('jenis_kelamin',['L','P']);
+            $table->string('name',100);
+            $table->text('address');
+            $table->enum('gender',['L','P']);
             $table->string('tlp',20);
             $table->softDeletes();
             $table->timestamps();

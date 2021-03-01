@@ -16,10 +16,10 @@
                 <form method="post" action="{{ route('setting.save') }}">
                   @csrf
                   <div class="form-group row">
-                    <label for="nama" class="col-sm-2 col-form-label">Nama Lengkap</label>
+                    <label for="name" class="col-sm-2 col-form-label">Nama Lengkap</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" placeholder="masukan nama lengkap" value="{{ auth()->user()->nama }}" name="nama" disabled>
-                      @error('nama')
+                      <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="masukan name lengkap" value="{{ auth()->user()->name }}" name="name" disabled autofocus>
+                      @error('name')
                         <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
                         </span>
@@ -111,7 +111,7 @@
 <script src="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
 <script type="text/javascript">
   $("#btn-edit").click(function(){
-    $("#nama").removeAttr('disabled')
+    $("#name").removeAttr('disabled')
     $("#username").removeAttr('disabled')
     $("#btn-simpan").removeAttr('disabled')
     $("#btn-edit").attr('disabled','disabled')

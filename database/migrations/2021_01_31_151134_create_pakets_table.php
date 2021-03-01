@@ -13,12 +13,12 @@ class CreatePaketsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pakets', function (Blueprint $table) {
+        Schema::create('packets', function (Blueprint $table) {
             $table->id();
             $table->foreignId('outlet_id')->constrained()->onDelete('cascade');
-            $table->enum('jenis',['kiloan','selimut','bed_cover','kaos','lain']);
-            $table->string('nama_paket',100);
-            $table->integer('biaya');
+            $table->enum('type',['kiloan','selimut','bed_cover','kaos','lain']);
+            $table->string('packet_name',100);
+            $table->integer('cost');
             $table->softDeletes();
             $table->timestamps();
         });

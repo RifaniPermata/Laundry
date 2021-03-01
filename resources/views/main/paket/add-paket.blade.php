@@ -20,11 +20,11 @@
               	@csrf
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="nama">Nama Outlet</label>
+                    <label for="name">Nama Outlet</label>
                       <select name="outlet_id" class="form-control @error('outlet_id') is-invalid @enderror">
                         <option value="">Pilih Outlet</option>
                     @forelse($outlets as $outlet)
-                        <option value="{{ $outlet->id }}" @if( old('outlet_id') == $outlet->id ) {{ 'selected' }} @endif>{{ $outlet->nama }}</option>
+                        <option value="{{ $outlet->id }}" @if( old('outlet_id') == $outlet->id ) {{ 'selected' }} @endif>{{ $outlet->name }}</option>
                     @empty
                         <option value="">Tidak ada outlet</option>
                     @endforelse
@@ -36,34 +36,34 @@
                     @enderror
                   </div>
                   <div class="form-group">
-                    <label for="nama">Jenis Paket</label>
-                    <select class="form-control @error('jenis') is-invalid @enderror" name="jenis">
-                      <option value="">Pilih Jenis Paket</option>
-                      <option value="kiloan" @if (old('jenis') == 'kiloan') {{ 'selected' }} @endif>Kiloan</option>
-                      <option value="selimut" @if (old('jenis') == 'selimut') {{ 'selected' }} @endif>Selimut</option>
-                      <option value="bed_cover" @if (old('jenis') == 'bed_cover') {{ 'selected' }} @endif>Bed Cover</option>
-                      <option value="kaos" @if (old('jenis') == 'kaos') {{ 'selected' }} @endif>Kaos</option>
-                      <option value="lain" @if (old('jenis') == 'lain') {{ 'selected' }} @endif>Lain - lain</option>
+                    <label for="type">Jenis Paket</label>
+                    <select class="form-control @error('type') is-invalid @enderror" name="type">
+                      <option value="">Pilih type Paket</option>
+                      <option value="kiloan" @if (old('type') == 'kiloan') {{ 'selected' }} @endif>Kiloan</option>
+                      <option value="selimut" @if (old('type') == 'selimut') {{ 'selected' }} @endif>Selimut</option>
+                      <option value="bed_cover" @if (old('type') == 'bed_cover') {{ 'selected' }} @endif>Bed Cover</option>
+                      <option value="kaos" @if (old('type') == 'kaos') {{ 'selected' }} @endif>Kaos</option>
+                      <option value="lain" @if (old('type') == 'lain') {{ 'selected' }} @endif>Lain - lain</option>
                     </select>
-                    @error('jenis')
+                    @error('type')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                   </div>
                   <div class="form-group">
-                    <label for="nama">Nama Paket</label>
-                    <input type="text" name="nama_paket" class="form-control @error('nama_paket') is-invalid @enderror" placeholder="nama paket ..." value="{{ old('nama_paket')}}">
-                    @error('nama_paket')
+                    <label for="packet_name">Nama Paket</label>
+                    <input type="text" name="packet_name" class="form-control @error('packet_name') is-invalid @enderror" placeholder="nama paket ..." value="{{ old('packet_name')}}">
+                    @error('packet_name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                   </div>
                   <div class="form-group">
-                    <label for="nama">Keterangan <span class="text-muted">Optional</span class="text-muted"></label>
-                    <textarea name="keterangan" class="form-control @error('keterangan') is-invalid @enderror" placeholder="keterangan ....">{{ old('keterangan') }}</textarea>
-                    @error('keterangan')
+                    <label for="cost">Biaya</label>
+                    <input type="number" name="cost" class="form-control" id="cost" placeholder="0">
+                    @error('cost')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>

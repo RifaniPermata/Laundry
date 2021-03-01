@@ -37,4 +37,10 @@ class ConfirmPasswordController extends Controller
     {
         $this->middleware('auth');
     }
+
+    public function showConfirmForm()
+    {
+        return redirect()->route('home');
+        return view('auth.passwords.confirm');
+    }
 }
